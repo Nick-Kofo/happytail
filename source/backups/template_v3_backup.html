@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Happy Tail – Natural Pet Shop Σέρρες</title>
+<meta name="description" content="Happy Tail Natural Pet Shop στις Σέρρες: φυσικές τροφές, λιχουδιές και αξεσουάρ για σκύλους και γάτες. Εθνικής Αντίστασης 52 · Παραγγελίες: 697 676 9228.">
+<link rel="icon" type="image/png" href="{{PAW}}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#141414; --ink-2:#2b2d2f; --muted:#5d6166;
+  --paper:#fbfaf6; --cream:#f3efe3; --mint:#d4ecd9; --mint-2:#b9e0c2;
+  --leaf:#9bc53d; --leaf-dark:#5f8a17; --line:#e4e0d4;
+  --radius:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Commissioner",system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{width:min(1160px,100% - 32px);margin-inline:auto}
+
+/* header */
+header{position:sticky;top:0;z-index:50;background:var(--ink);color:#fff}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px;gap:16px}
+.brand img{height:46px;width:auto}
+.nav ul{display:flex;gap:28px;list-style:none;font-weight:500;font-size:15px}
+.nav ul a{text-decoration:none;opacity:.85}
+.nav ul a:hover{opacity:1;color:var(--leaf)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:999px;font-weight:700;text-decoration:none;font-size:15px;transition:transform .15s,background .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn-leaf{background:var(--leaf);color:var(--ink)}
+.btn-leaf:hover{background:#aad34c}
+.btn-ghost{border:2px solid currentColor}
+.menu-btn{display:none;background:none;border:0;color:#fff;font-size:26px;cursor:pointer}
+
+/* hero */
+.hero{background:var(--ink);color:#fff;padding:56px 0 88px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--leaf);font-weight:700;font-size:14px;letter-spacing:.12em;text-transform:uppercase}
+.hero h1{font-size:clamp(38px,5.4vw,64px);line-height:1.05;font-weight:800;margin:18px 0 20px;letter-spacing:-.02em}
+.hero h1 em{font-style:normal;color:var(--leaf)}
+.hero p{font-size:18px;color:#cfd2cc;max-width:34em}
+.hero .cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:32px}
+.hero-img{position:relative}
+.hero-img img{border-radius:28px;aspect-ratio:4/3.3;object-fit:cover;width:100%}
+.badge{position:absolute;left:-22px;bottom:-26px;background:var(--mint);color:var(--ink);border-radius:20px;padding:16px 20px;display:flex;gap:12px;align-items:center;box-shadow:0 16px 40px rgba(0,0,0,.35)}
+.badge img{width:40px;filter:invert(1)}
+.badge b{display:block;font-size:17px;line-height:1.2}
+.badge span{font-size:13px;color:var(--ink-2)}
+
+/* sections */
+section{padding:96px 0}
+.head{max-width:640px;margin-bottom:48px}
+.head h2{font-size:clamp(30px,3.6vw,44px);line-height:1.1;font-weight:800;letter-spacing:-.02em;margin-top:10px}
+.head p{color:var(--muted);font-size:17px;margin-top:14px}
+.eyebrow.dark{color:var(--leaf-dark)}
+
+.values{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.value{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px}
+.ico{width:48px;height:48px;border-radius:14px;background:var(--mint);display:grid;place-items:center;margin-bottom:18px}
+.ico svg{width:24px;height:24px;stroke:var(--ink);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.value h3{font-size:18px;margin-bottom:6px}
+.value p{color:var(--muted);font-size:15px}
+
+/* categories */
+.cats-bg{background:var(--cream)}
+.cats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.cat{background:var(--paper);border-top:4px solid var(--leaf)!important;border-radius:var(--radius);padding:30px 26px 26px;display:flex;flex-direction:column;min-height:260px;position:relative;overflow:hidden;border:1px solid var(--line)}
+.cat .num{font-size:13px;font-weight:700;color:var(--leaf-dark);letter-spacing:.1em}
+.cat h3{font-size:22px;margin:10px 0 8px;line-height:1.2}
+.cat p{color:var(--muted);font-size:15px;flex:1}
+.cat ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px;margin-top:18px}
+.cat li{font-size:12.5px;background:var(--mint);padding:4px 10px;border-radius:999px;font-weight:500}
+
+/* store */
+.store-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.store-grid figure{position:relative;border-radius:24px;overflow:hidden}
+.store-grid img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3;transition:transform .6s}
+.store-grid figure:hover img{transform:scale(1.03)}
+.store-grid figcaption{position:absolute;left:16px;bottom:16px;background:rgba(20,20,20,.78);color:#fff;padding:8px 14px;border-radius:999px;font-size:14px;font-weight:500;backdrop-filter:blur(6px)}
+
+.brands{margin-top:56px;border-top:1px solid var(--line);padding-top:36px}
+.brands small{display:block;font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:12px;color:var(--muted);margin-bottom:18px}
+.brand-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+.brand-card{background:#fff;border:1px solid var(--line);border-radius:14px;height:88px;display:grid;place-items:center;padding:14px 18px;text-align:center}
+.brand-card img{max-height:52px;max-width:100%;object-fit:contain}
+.brand-card span{font-weight:700;font-size:16px;color:var(--ink-2);line-height:1.25}
+.brand-card.has-logo span{display:none}
+
+/* eshop */
+.eshop{background:var(--mint);border-radius:32px;padding:64px;display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center;position:relative;overflow:hidden}
+.eshop h2{font-size:clamp(28px,3.4vw,42px);line-height:1.1;font-weight:800;letter-spacing:-.02em}
+.eshop p{color:var(--ink-2);margin:14px 0 28px;font-size:17px}
+.eshop .btn-dark{background:var(--ink);color:#fff}
+.eshop-list{list-style:none;display:grid;gap:14px}
+.eshop-list li{background:rgba(255,255,255,.65);border-radius:14px;padding:16px 18px;display:flex;gap:12px;align-items:center;font-weight:600}
+.eshop-list li::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--leaf-dark);flex:none}
+.eshop .pawbg{position:absolute;right:-40px;top:-40px;width:220px;opacity:.12;filter:invert(1);pointer-events:none}
+
+/* visit */
+.visit{display:grid;grid-template-columns:1fr 1.2fr;gap:28px}
+.info{background:var(--ink);color:#fff;border-radius:24px;padding:40px}
+.info h3{font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--leaf);margin-bottom:6px}
+.info .row{padding:18px 0;border-bottom:1px solid #2e302e}
+.info .row:last-of-type{border:0}
+.info p,.info a{font-size:17px;text-decoration:none}
+.info a:hover{color:var(--leaf)}
+.hours{display:grid;grid-template-columns:auto 1fr;gap:4px 18px;font-size:16px}
+.hours span:nth-child(odd){color:#aeb2aa}
+.social{display:flex;gap:10px;margin-top:22px}
+.social a{width:44px;height:44px;border-radius:12px;background:#262826;display:grid;place-items:center}
+.social a:hover{background:var(--leaf)}
+.social svg{width:20px;height:20px;fill:#fff}
+.map{border-radius:24px;overflow:hidden;min-height:420px;border:1px solid var(--line)}
+.map iframe{width:100%;height:100%;min-height:420px;border:0}
+
+footer{background:var(--ink);color:#9ea39b;padding:48px 0;margin-top:96px;font-size:14px}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.foot img{height:40px}
+
+/* responsive */
+@media (max-width:960px){
+  .hero-grid,.eshop,.visit{grid-template-columns:1fr}
+  .values,.cats{grid-template-columns:1fr 1fr}
+  .badge{left:12px}
+  .eshop{padding:40px 28px}
+}
+@media (max-width:760px){
+  .nav ul{display:none;position:absolute;top:72px;left:0;right:0;background:var(--ink);flex-direction:column;padding:20px 16px 28px;gap:18px}
+  .nav ul.open{display:flex}
+  .menu-btn{display:block}
+  .nav .btn{display:none}
+  section{padding:72px 0}
+  .values,.cats,.store-grid{grid-template-columns:1fr}
+  .cat{min-height:0}
+  .info{padding:28px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#top" class="brand" aria-label="Happy Tail"><img src="{{LOGO}}" alt="Happy Tail Natural Pet Shop"></a>
+    <ul id="menu">
+      <li><a href="#why">Φιλοσοφία</a></li>
+      <li><a href="#products">Προϊόντα</a></li>
+      <li><a href="#store">Το κατάστημα</a></li>
+      <li><a href="#visit">Επικοινωνία</a></li>
+    </ul>
+    <a class="btn btn-leaf" href="tel:+306976769228">📞 697 676 9228</a>
+    <button class="menu-btn" aria-label="Μενού" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
+  </div>
+</header>
+
+<main id="top">
+<div class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">● Natural Pet Shop · Σέρρες</span>
+      <h1>Φυσική διατροφή για <em>χαρούμενες</em> ουρίτσες.</h1>
+      <p>Επιλεγμένες τροφές, λιχουδιές και αξεσουάρ για σκύλους και γάτες, στην Εθνικής Αντίστασης 52 — με καθαρά συστατικά και προσωπική συμβουλή για κάθε τετράποδο φίλο.</p>
+      <div class="cta">
+        <a class="btn btn-leaf" href="tel:+306976769228">Παραγγελία στο 697 676 9228</a>
+        <a class="btn btn-ghost" href="#visit">Επισκεφθείτε μας</a>
+      </div>
+    </div>
+    <div class="hero-img">
+      <img src="{{SHELVES}}" alt="Ράφια με φυσικές τροφές στο Happy Tail">
+    </div>
+  </div>
+</div>
+
+<section id="why">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow dark">Η φιλοσοφία μας</span>
+      <h2>Ό,τι βάζουμε στο ράφι, το δίνουμε και στα δικά μας ζώα.</h2>
+      <p>Διαλέγουμε προσεκτικά κάθε προϊόν, με έμφαση στη φυσική σύνθεση και την ποιότητα των πρώτων υλών.</p>
+    </div>
+    <div class="values">
+      <div class="value">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 1 8-1.3 5.3-5 10-9 10Z"/><path d="M2 21c0-3 1.9-5.4 5.5-6"/></svg></div>
+        <h3>Φυσικά συστατικά</h3>
+        <p>Τροφές και λιχουδιές χωρίς περιττά πρόσθετα και συντηρητικά.</p>
+      </div>
+      <div class="value">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7Z"/></svg></div>
+        <h3>Προσωπική συμβουλή</h3>
+        <p>Σας βοηθάμε να βρείτε την τροφή που ταιριάζει σε ηλικία, μέγεθος και ανάγκες.</p>
+      </div>
+      <div class="value">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2 3 7v10l9 5 9-5V7Z"/><path d="m3 7 9 5 9-5M12 22V12"/></svg></div>
+        <h3>Επιλεγμένα brands</h3>
+        <p>Ευρωπαϊκές εταιρείες με διαφάνεια στη σύνθεση και την προέλευση.</p>
+      </div>
+      <div class="value">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 9h18l-1.5 11h-15Z"/><path d="M8 9V6a4 4 0 0 1 8 0v3"/></svg></div>
+        <h3>Παραγγελίες τηλεφωνικά</h3>
+        <p>Πείτε μας τι χρειάζεστε και το ετοιμάζουμε για να το παραλάβετε.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="products" class="cats-bg">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow dark">Τι θα βρείτε</span>
+      <h2>Όλα όσα χρειάζεται ο φίλος σας, σε ένα μέρος.</h2>
+    </div>
+    <div class="cats">
+      <div class="cat">
+        <span class="num">01</span>
+        <h3>Τροφές σκύλου</h3>
+        <p>Ξηρές και υγρές τροφές για κουτάβια, ενήλικες, μικρόσωμες φυλές και ευαίσθητα στομάχια.</p>
+        <ul><li>Puppy</li><li>Adult</li><li>Mini</li><li>Grain free</li></ul>
+      </div>
+      <div class="cat">
+        <span class="num">02</span>
+        <h3>Τροφές γάτας</h3>
+        <p>Πλήρεις διατροφές για γατάκια, ενήλικες και στειρωμένες γάτες, ξηρές και κονσέρβες.</p>
+        <ul><li>Kitten</li><li>Sterilised</li><li>Κονσέρβες</li></ul>
+      </div>
+      <div class="cat">
+        <span class="num">03</span>
+        <h3>Λιχουδιές &amp; μασητικά</h3>
+        <p>Φυσικά μασητικά, snacks κολλαγόνου και λιχουδιές από κοτόπουλο, σολομό, πάπια και αρνί.</p>
+        <ul><li>Κολλαγόνο</li><li>Dental</li><li>100% natural</li></ul>
+      </div>
+      <div class="cat">
+        <span class="num">04</span>
+        <h3>Αξεσουάρ</h3>
+        <p>Κρεβατάκια, μπολ, οδηγοί, είδη περιποίησης, παιχνίδια και σπιτάκια εξωτερικού χώρου.</p>
+        <ul><li>Κρεβάτια</li><li>Οδηγοί</li><li>Περιποίηση</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="store">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow dark">Το κατάστημα</span>
+      <h2>Ελάτε να μας γνωρίσετε από κοντά.</h2>
+      <p>Ένας φωτεινός, οργανωμένος χώρος όπου μπορείτε να δείτε, να ρωτήσετε και να διαλέξετε με την ησυχία σας — με ή χωρίς τον τετράποδο συνοδό σας.</p>
+    </div>
+    <div class="store-grid">
+      <figure><img src="{{STORE}}" alt="Διάδρομοι με τροφές και αξεσουάρ" loading="lazy"><figcaption>Τροφές, λιχουδιές &amp; αξεσουάρ</figcaption></figure>
+      <figure><img src="{{SHELVES}}" alt="Ράφια με φυσικές τροφές σκύλου και γάτας" loading="lazy"><figcaption>Ο τοίχος των φυσικών τροφών</figcaption></figure>
+    </div>
+    <div class="brands">
+      <small>Θα βρείτε μεταξύ άλλων</small>
+      <!-- ΛΟΓΟΤΥΠΑ: βάλτε τα αρχεία στον φάκελο logos/ με τα ονόματα που φαίνονται στο src (π.χ. logos/harper-and-bone.png). Όσα λείπουν δείχνουν το όνομα. -->
+      <div class="brand-grid">
+        <div class="brand-card"><img src="logos/harper-and-bone.png" alt="Harper and Bone" onload="this.parentNode.classList.add('has-logo')" onerror="this.remove()"><span>Harper and Bone</span></div>
+        <div class="brand-card"><img src="logos/baffs-naturals.png" alt="Baffs Naturals" onload="this.parentNode.classList.add('has-logo')" onerror="this.remove()"><span>Baffs Naturals</span></div>
+        <div class="brand-card"><img src="logos/happy-dog.png" alt="Happy Dog" onload="this.parentNode.classList.add('has-logo')" onerror="this.remove()"><span>Happy Dog</span></div>
+        <div class="brand-card"><img src="logos/happy-cat.png" alt="Happy Cat" onload="this.parentNode.classList.add('has-logo')" onerror="this.remove()"><span>Happy Cat</span></div>
+        <div class="brand-card"><img src="logos/the-dog-epicurean.png" alt="The Dog Epicurean" onload="this.parentNode.classList.add('has-logo')" onerror="this.remove()"><span>The Dog Epicurean</span></div>
+        <div class="brand-card"><img src="logos/flexi.png" alt="Flexi" onload="this.parentNode.classList.add('has-logo')" onerror="this.remove()"><span>Flexi</span></div>
+        <div class="brand-card"><img src="logos/earth-rated.png" alt="Earth Rated" onload="this.parentNode.classList.add('has-logo')" onerror="this.remove()"><span>Earth Rated</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap" id="order">
+  <div class="eshop">
+    <img class="pawbg" src="{{PAW}}" alt="">
+    <div>
+      <span class="eyebrow dark">Τηλεφωνικές παραγγελίες</span>
+      <h2>Το αγαπημένο σας σακί, ένα τηλεφώνημα μακριά.</h2>
+      <p>Καλέστε μας ή στείλτε μήνυμα, πείτε μας τι χρειάζεστε και θα σας το έχουμε έτοιμο.</p>
+      <a class="btn btn-dark" href="tel:+306976769228">📞 697 676 9228</a>
+    </div>
+    <ul class="eshop-list">
+      <li>Παραλαβή από το κατάστημα, Εθνικής Αντίστασης 52</li>
+      <li>Συμβουλή για τη σωστή τροφή πριν την αγορά</li>
+      <li>Μηνύματα και στο Facebook &amp; Instagram</li>
+    </ul>
+  </div>
+</div>
+
+<section id="visit">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow dark">Επικοινωνία</span>
+      <h2>Βρείτε μας στις Σέρρες.</h2>
+    </div>
+    <div class="visit">
+      <div class="info">
+                <div class="row"><h3>Διεύθυνση</h3><p>Εθνικής Αντίστασης 52, Σέρρες 621 00</p></div>
+        <div class="row"><h3>Τηλέφωνο παραγγελιών</h3><a href="tel:+306976769228">697 676 9228</a></div>
+        <div class="row"><h3>Email</h3><a href="mailto:happytailserres@gmail.com">happytailserres@gmail.com</a></div>
+        <div class="row"><h3>Ωράριο</h3>
+          <!-- ΩΡΑΡΙΟ: για να το προσθέσετε, βάλτε εδώ <div class="hours"><span>Δευ – Παρ</span><span>09:00 – 21:00</span>...</div> -->
+          <p>Δείτε το τρέχον ωράριο στη <a href="https://www.facebook.com/profile.php?id=61584055689224" target="_blank" rel="noopener" style="color:var(--leaf)">σελίδα μας στο Facebook</a> ή καλέστε μας.</p>
+        </div>
+        <div class="social">
+          <a href="https://www.facebook.com/profile.php?id=61584055689224" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3c-2.8 0-4 1.8-4 4.5V11H7v4h3v9h4v-9h3l1-4h-4V8.8c0-.5.3-.8 1-.8Z"/></svg></a>
+          <a href="https://www.instagram.com/happytail_serres/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" style="fill:none;stroke:#fff;stroke-width:2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="#fff"/></svg></a>
+        </div>
+      </div>
+      <div class="map">
+                <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Χάρτης" src="https://maps.google.com/maps?q=%CE%95%CE%B8%CE%BD%CE%B9%CE%BA%CE%AE%CF%82%20%CE%91%CE%BD%CF%84%CE%AF%CF%83%CF%84%CE%B1%CF%83%CE%B7%CF%82%2052%2C%20%CE%A3%CE%AD%CF%81%CF%81%CE%B5%CF%82%2062100&z=16&output=embed"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <img src="{{LOGO}}" alt="Happy Tail">
+    <p>© <span id="y"></span> Happy Tail Natural Pet Shop · Σέρρες</p>
+  </div>
+</footer>
+<script>
+document.getElementById('y').textContent=new Date().getFullYear();
+document.querySelectorAll('#menu a').forEach(a=>a.addEventListener('click',()=>document.getElementById('menu').classList.remove('open')));
+</script>
+</body>
+</html>

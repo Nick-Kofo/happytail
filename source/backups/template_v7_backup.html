@@ -1,0 +1,844 @@
+<!doctype html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Happy Tail – Natural Pet Shop Σέρρες</title>
+<meta name="description" content="Happy Tail Natural Pet Shop στις Σέρρες: φυσικές τροφές, λιχουδιές και αξεσουάρ για σκύλους και γάτες. Εθνικής Αντίστασης 52 · Παραγγελίες: 697 676 9228 · Αποστολή στην πόρτα σας.">
+<link rel="icon" type="image/png" href="{{PAW}}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+:root{
+  --ink:#141414; --ink-2:#2b2d2f; --muted:#5d6166;
+  --paper:#fbfaf6; --cream:#f3efe3; --mint:#d4ecd9; --mint-2:#b9e0c2;
+  --leaf:#9bc53d; --leaf-dark:#5f8a17; --line:#e4e0d4;
+  --radius:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Commissioner",system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+button{font:inherit;color:inherit}
+.wrap{width:min(1160px,100% - 32px);margin-inline:auto}
+
+/* ---------- header ---------- */
+header{position:sticky;top:0;z-index:50;background:var(--ink);color:#fff}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px;gap:16px}
+.brand img{height:46px;width:auto}
+.nav ul{display:flex;gap:28px;list-style:none;font-weight:500;font-size:15px}
+.nav ul a{text-decoration:none;opacity:.85}
+.nav ul a:hover{opacity:1;color:var(--leaf)}
+.nav-line{position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--leaf);transform:scaleX(1);transform-origin:center;transition:transform .55s cubic-bezier(.6,0,.2,1)}
+.reveal{transition:opacity .45s ease,transform .45s ease;transition-delay:var(--d,0s)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:999px;font-weight:700;text-decoration:none;font-size:15px;transition:transform .15s,background .15s;border:0;cursor:pointer}
+.btn:hover{transform:translateY(-2px)}
+.btn-leaf{background:var(--leaf);color:var(--ink)}
+.btn-leaf:hover{background:#aad34c}
+.btn-ghost{border:2px solid currentColor;background:none}
+.btn-dark{background:var(--ink);color:#fff}
+.menu-btn{display:none;background:none;border:0;color:#fff;font-size:26px;cursor:pointer}
+
+/* ---------- hero ---------- */
+.hero{background:var(--ink);color:#fff;position:relative;overflow:hidden;min-height:min(calc(100svh - 72px),760px);display:grid;align-items:center;padding:48px 0 64px}
+.hero-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center;transition:opacity .9s ease,transform .9s ease}
+html.js .hero:not(.done) .hero-grid{opacity:0;transform:translateY(18px);pointer-events:none}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--leaf);font-weight:700;font-size:14px;letter-spacing:.12em;text-transform:uppercase}
+.hero h1{font-size:clamp(38px,5.4vw,64px);line-height:1.05;font-weight:800;margin:18px 0 18px;letter-spacing:-.02em}
+.hero h1 em{font-style:normal;color:var(--leaf)}
+.hero p{font-size:19px;color:#cfd2cc}
+.hero .cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+.hero .note{margin-top:22px;font-size:15px;color:#aeb4a8;display:flex;align-items:center;gap:10px}
+.hero .note svg{width:22px;height:22px;stroke:var(--leaf);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+/* intro: μόνο το σκυλάκι σε όλο το μαύρο */
+.intro{position:absolute;inset:0;z-index:5;background:#000;display:none;transition:opacity .9s ease}
+html.js .hero:not(.gone) .intro{display:block}
+.intro.fade{opacity:0;pointer-events:none}
+.intro video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:none}
+.intro.has-video video{display:block}
+.intro .dogsvg{position:absolute;inset:0}
+.intro .dogsvg svg{width:100%;height:100%;display:block}
+.intro.has-video .dogsvg{display:none}
+.glowbg{position:absolute;inset:0;background:radial-gradient(60% 70% at 50% 65%,rgba(155,197,61,.25),transparent 70%);opacity:0;transition:opacity 1.2s;pointer-events:none}
+.intro.bloom .glowbg{opacity:1}
+.leaf{position:absolute;width:var(--s,90px);opacity:0;transform:scale(.2) rotate(var(--r0,-60deg));transition:opacity .8s var(--d,0s),transform 1.2s cubic-bezier(.2,1.4,.4,1) var(--d,0s);pointer-events:none}
+.leaf path{fill:var(--c,#5f8a17)}
+.intro.bloom .leaf{opacity:.95;transform:scale(1) rotate(var(--r,0deg))}
+.welcome{position:absolute;left:6%;top:46%;transform:translateY(-50%) scale(.8);transform-origin:left center;background:#fff;color:var(--ink);font-weight:800;font-size:clamp(20px,3vw,32px);padding:14px 30px;border-radius:999px;box-shadow:0 18px 50px rgba(0,0,0,.4);opacity:0;transition:opacity .5s .35s,transform .6s cubic-bezier(.2,1.5,.4,1) .35s;white-space:nowrap}
+.welcome b{color:var(--leaf-dark)}
+.intro.bloom .welcome{opacity:1;transform:translateY(-50%) scale(1)}
+@media (max-width:760px){.welcome{left:50%;top:12%;transform:translate(-50%,0) scale(.8);transform-origin:center}.intro.bloom .welcome{transform:translate(-50%,0) scale(1)}}
+.skip{position:absolute;right:18px;bottom:16px;z-index:2;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:#ddd;font-size:13px;padding:7px 14px;border-radius:999px;cursor:pointer}
+.skip:hover{background:rgba(255,255,255,.2)}
+
+/* μικρό ζωντανό σκυλάκι δίπλα στο κείμενο */
+.buddy{justify-self:end;width:min(460px,100%);background:radial-gradient(120% 90% at 70% 10%,#24301f,#161915);border:1px solid #262b23;border-radius:26px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.35)}
+.buddy-view{position:relative;aspect-ratio:736/400}
+.buddy.has-video .buddy-view{background:#000}
+.buddy-view video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .3s}
+.buddy.has-video .buddy-view video.on{opacity:1}
+.buddy .dogsvg,.buddy .dogsvg svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.buddy.has-video .dogsvg{display:none}
+.buddy-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 16px;border-top:1px solid #262b23}
+.buddy-bar span{font-size:14px;color:#cfd2cc;font-weight:600;line-height:1.3}
+.buddy-bar .btn{padding:10px 16px;font-size:14px;white-space:nowrap}
+.buddy-bar .btn:disabled{opacity:.55;cursor:default;transform:none}
+
+/* ---------- sections ---------- */
+section{padding:96px 0}
+.head{max-width:640px;margin-bottom:48px}
+.head h2{font-size:clamp(30px,3.6vw,44px);line-height:1.1;font-weight:800;letter-spacing:-.02em;margin-top:10px}
+.head p{color:var(--muted);font-size:17px;margin-top:14px}
+.eyebrow.dark{color:var(--leaf-dark)}
+
+.values{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.value{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px}
+.ico{width:48px;height:48px;border-radius:14px;background:var(--mint);display:grid;place-items:center;margin-bottom:18px}
+.ico svg{width:24px;height:24px;stroke:var(--ink);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.value h3{font-size:18px;margin-bottom:6px}
+.value p{color:var(--muted);font-size:15px}
+
+/* ---------- categories ---------- */
+.cats-bg{background:var(--cream)}
+.cats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.cat{background:var(--paper);border:1px solid var(--line);border-top:4px solid var(--leaf);border-radius:var(--radius);padding:30px 26px 26px;display:flex;flex-direction:column;min-height:260px}
+.cat .num{font-size:13px;font-weight:700;color:var(--leaf-dark);letter-spacing:.1em}
+.cat h3{font-size:22px;margin:10px 0 8px;line-height:1.2}
+.cat p{color:var(--muted);font-size:15px;flex:1}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.tag{font-size:13px;background:var(--mint);padding:6px 12px;border-radius:999px;font-weight:600;border:1px solid transparent;cursor:pointer;transition:background .15s,transform .15s,border-color .15s;display:inline-flex;align-items:center;gap:4px}
+.tag::after{content:"›";font-weight:800;opacity:.55}
+.tag:hover,.tag:focus-visible{background:var(--leaf);transform:translateY(-1px);outline:none}
+.cats-hint{margin-top:22px;color:var(--muted);font-size:14px;display:flex;align-items:center;gap:8px}
+
+/* ---------- care book ---------- */
+.book-head{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;margin-bottom:48px}
+.book-head .head{margin:0}
+.book{position:relative;width:min(340px,100%);aspect-ratio:2/1.25;margin-inline:auto;perspective:1400px}
+.book .page{position:absolute;top:0;bottom:0;width:50%;background:#fff;border:1px solid var(--line);box-shadow:0 18px 40px rgba(20,20,20,.08)}
+.book .page::before{content:"";position:absolute;inset:18% 14%;background:repeating-linear-gradient(#fff 0 12px,#e6e2d6 12px 14px)}
+.book .left{left:0;border-radius:14px 2px 2px 14px;opacity:0;transition:opacity .2s .5s}
+.book .right{right:0;border-radius:2px 14px 14px 2px}
+.book .right .art{position:absolute;inset:16% 14%;border-radius:10px;background:var(--mint);display:grid;place-items:center;opacity:0;transition:opacity .4s .9s}
+.book .right .art img{width:46%}
+.book .right::before{display:none}
+.book .cover{position:absolute;right:0;top:0;bottom:0;width:50%;transform-origin:left center;transform-style:preserve-3d;transition:transform 1.1s cubic-bezier(.5,0,.2,1)}
+.book .cover>div{position:absolute;inset:0;backface-visibility:hidden;border-radius:2px 14px 14px 2px}
+.book .cover .front{background:var(--leaf-dark);display:grid;place-items:center;color:#fff;text-align:center;font-weight:800;font-size:15px;line-height:1.2;padding:12px}
+.book .cover .front img{width:46px;margin:0 auto 8px}
+.book .cover .back{background:#fff;transform:rotateY(180deg);border-radius:14px 2px 2px 14px;border:1px solid var(--line)}
+.book .cover .back::before{content:"";position:absolute;inset:18% 14%;background:repeating-linear-gradient(#fff 0 12px,#e6e2d6 12px 14px)}
+.book.open .cover{transform:rotateY(-180deg)}
+.book.open .left{opacity:1}
+.book.open .right .art{opacity:1}
+.articles{display:grid;gap:16px}
+.article{display:grid;grid-template-columns:200px 1fr auto;gap:26px;align-items:center;background:#fff;border:2px solid var(--line);border-radius:22px;padding:14px 26px 14px 14px;cursor:pointer;text-align:left;width:100%;transition:border-color .2s,background .2s,transform .2s,box-shadow .2s;opacity:0;transform:translateY(16px)}
+.articles.shown .article{opacity:1;transform:none;transition:opacity .5s var(--d,0s),transform .5s var(--d,0s),border-color .2s,background .2s,box-shadow .2s}
+.article:hover,.article:focus-visible{border-color:var(--leaf);background:#f6fbef;box-shadow:0 14px 34px rgba(95,138,23,.15);outline:none}
+.articles.shown .article:hover{transform:translateY(-3px)}
+.article .thumb{border-radius:14px;aspect-ratio:16/10;display:grid;place-items:center;overflow:hidden}
+.article .thumb svg{width:56%;height:auto}
+.article .kicker{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--leaf-dark)}
+.article h3{font-size:22px;line-height:1.25;margin:4px 0 6px}
+.article p{color:var(--muted);font-size:15px}
+.article .go{width:46px;height:46px;border-radius:50%;background:var(--mint);display:grid;place-items:center;font-size:20px;font-weight:800;transition:background .2s}
+.article:hover .go{background:var(--leaf)}
+.article .full{display:none}
+
+/* ---------- store ---------- */
+.store-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.store-grid figure{position:relative;border-radius:24px;overflow:hidden}
+.store-grid img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3;transition:transform .6s}
+.store-grid figure:hover img{transform:scale(1.03)}
+.store-grid figcaption{position:absolute;left:16px;bottom:16px;background:rgba(20,20,20,.78);color:#fff;padding:8px 14px;border-radius:999px;font-size:14px;font-weight:500;backdrop-filter:blur(6px)}
+.brands{margin-top:56px;border-top:1px solid var(--line);padding-top:36px}
+.brands small{display:block;font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:12px;color:var(--muted);margin-bottom:18px}
+.brand-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+.brand-card{background:#fff;border:1px solid var(--line);border-radius:14px;height:88px;display:grid;place-items:center;padding:14px 18px;text-align:center}
+.brand-card img{max-height:52px;max-width:100%;object-fit:contain}
+.brand-card span{font-weight:700;font-size:16px;color:var(--ink-2);line-height:1.25}
+.brand-card.has-logo span{display:none}
+
+/* ---------- order ---------- */
+.order{background:var(--mint);border-radius:32px;padding:64px;display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center;position:relative;overflow:hidden}
+.order h2{font-size:clamp(28px,3.4vw,42px);line-height:1.1;font-weight:800;letter-spacing:-.02em}
+.order p{color:var(--ink-2);margin:14px 0 28px;font-size:17px}
+.order-list{list-style:none;display:grid;gap:14px;position:relative}
+.order-list li{background:rgba(255,255,255,.7);border-radius:14px;padding:16px 18px;display:flex;gap:12px;align-items:center;font-weight:600}
+.order-list li::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--leaf-dark);flex:none}
+.order-list li.hl{background:#fff;box-shadow:0 8px 20px rgba(95,138,23,.15)}
+.order .pawbg{position:absolute;right:-30px;top:-36px;width:210px;opacity:.16;pointer-events:none;transform:rotate(12deg)}
+
+/* ---------- visit ---------- */
+.visit{display:grid;grid-template-columns:1fr 1.2fr;gap:28px}
+.info{background:var(--ink);color:#fff;border-radius:24px;padding:40px}
+.info h3{font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--leaf);margin-bottom:6px}
+.info .row{padding:18px 0;border-bottom:1px solid #2e302e}
+.info .row:last-of-type{border:0}
+.info p,.info a{font-size:17px;text-decoration:none}
+.info a:hover{color:var(--leaf)}
+.info small{display:block;color:#aeb2aa;font-size:14px;margin-top:2px}
+.social{display:flex;gap:10px;margin-top:22px}
+.social a{width:44px;height:44px;border-radius:12px;background:#262826;display:grid;place-items:center}
+.social a:hover{background:var(--leaf)}
+.social svg{width:20px;height:20px;fill:#fff}
+.map{border-radius:24px;overflow:hidden;min-height:420px;border:1px solid var(--line)}
+.map iframe{width:100%;height:100%;min-height:420px;border:0}
+
+footer{background:var(--ink);color:#9ea39b;padding:48px 0 110px;margin-top:96px;font-size:14px}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.foot img{height:40px}
+
+/* ---------- modal ---------- */
+dialog.modal{border:0;border-radius:24px;padding:0;width:min(720px,calc(100% - 32px));max-height:min(86vh,900px);margin:auto;background:var(--paper);color:var(--ink);box-shadow:0 30px 80px rgba(0,0,0,.35)}
+dialog.modal::backdrop{background:rgba(20,20,20,.55);backdrop-filter:blur(3px)}
+.m-head{position:sticky;top:0;background:var(--paper);padding:26px 28px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;align-items:flex-start;z-index:1}
+.m-head h3{font-size:26px;line-height:1.15}
+.m-head .eyebrow{font-size:12px}
+.m-close{flex:none;width:40px;height:40px;border-radius:50%;border:0;background:var(--cream);font-size:22px;cursor:pointer}
+.m-close:hover{background:var(--mint)}
+.m-body{padding:22px 28px 28px}
+.m-body h4{font-size:18px;margin:20px 0 6px}
+.m-body p,.m-body li{font-size:16px;color:var(--ink-2)}
+.m-body ul{padding-left:20px;margin:6px 0}
+.m-body li{margin:4px 0}
+.m-body .callout{background:var(--mint);border-radius:14px;padding:14px 16px;margin-top:20px;font-size:15px}
+.prod-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.prod{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px}
+.prod .b{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--leaf-dark)}
+.prod h4{margin:4px 0 4px;font-size:17px}
+.prod p{font-size:14px;color:var(--muted)}
+.m-foot{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:22px}
+.m-foot small{color:var(--muted);flex-basis:100%}
+
+/* ---------- floating contact ---------- */
+.fab{position:fixed;right:20px;bottom:20px;z-index:60}
+.fab-btn{display:flex;align-items:center;gap:10px;background:var(--ink);color:#fff;border:2px solid var(--leaf);border-radius:999px;padding:8px 20px 8px 8px;cursor:pointer;box-shadow:0 12px 30px rgba(0,0,0,.3);font-weight:700;font-size:15px;transition:transform .2s}
+.fab-btn:hover{transform:translateY(-2px) scale(1.02)}
+.fab-btn .pw{width:44px;height:44px;border-radius:50%;background:#262826;display:grid;place-items:center;position:relative}
+.fab-btn .pw img{width:28px}
+.fab-btn .pw::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid var(--leaf);animation:ping 2.4s ease-out infinite}
+@keyframes ping{0%{transform:scale(.9);opacity:.9}80%,100%{transform:scale(1.5);opacity:0}}
+.fab-panel{position:absolute;right:0;bottom:72px;width:min(360px,calc(100vw - 32px));background:var(--paper);border-radius:22px;box-shadow:0 24px 60px rgba(0,0,0,.3);overflow:hidden;transform-origin:bottom right;transition:transform .2s,opacity .2s}
+.fab-panel[hidden]{display:block;opacity:0;transform:scale(.92) translateY(8px);pointer-events:none;visibility:hidden}
+.fp-head{background:var(--ink);color:#fff;padding:18px 20px;display:flex;gap:12px;align-items:center}
+.fp-head img{width:34px}
+.fp-head b{display:block;font-size:17px}
+.fp-head span{font-size:13px;color:#bfc3bb}
+.fp-head button{margin-left:auto;background:none;border:0;color:#fff;font-size:22px;cursor:pointer;opacity:.7}
+.fp-body{padding:16px 18px 18px;display:grid;gap:10px}
+.fp-link{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;background:#fff;border:1px solid var(--line);text-decoration:none;font-weight:600;font-size:15px;transition:border-color .15s,background .15s}
+.fp-link:hover{border-color:var(--leaf);background:#f6fbef}
+.fp-link .i{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;color:#fff;flex:none}
+.fp-link .i svg{width:18px;height:18px;fill:#fff}
+.fp-link small{display:block;font-weight:500;color:var(--muted);font-size:12.5px}
+.fp-or{text-align:center;font-size:12px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin:4px 0}
+.fp-form{display:grid;gap:8px}
+.fp-form input,.fp-form textarea{font:inherit;font-size:15px;padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:#fff;resize:vertical}
+.fp-form input:focus,.fp-form textarea:focus{outline:2px solid var(--leaf);border-color:transparent}
+.fp-form .btn{justify-content:center}
+
+/* ---------- responsive ---------- */
+@media (max-width:960px){
+  .hero-grid,.order,.visit,.book-head{grid-template-columns:1fr}
+  .values,.cats{grid-template-columns:1fr 1fr}
+  .order{padding:40px 28px}
+  .article{grid-template-columns:150px 1fr auto}
+}
+@media (max-width:760px){
+  .nav ul{display:none;position:absolute;top:72px;left:0;right:0;background:var(--ink);flex-direction:column;padding:20px 16px 28px;gap:18px}
+  .nav ul.open{display:flex}
+  .menu-btn{display:block}
+  .nav .btn{display:none}
+  section{padding:72px 0}
+  .values,.cats,.store-grid,.prod-grid{grid-template-columns:1fr}
+  .cat{min-height:0}
+  .info{padding:28px}
+  .article{grid-template-columns:96px 1fr;padding:12px 16px 12px 12px;gap:16px}
+  .article .go{display:none}
+  .article h3{font-size:18px}
+  .article p{display:none}
+  .hero{padding-top:28px}
+  .buddy{justify-self:center}
+  .fab-btn{padding:6px}
+  .fab-btn .lbl{display:none}
+  .m-head,.m-body{padding-left:20px;padding-right:20px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition-duration:.01s!important;animation:none!important}
+}
+</style>
+</head>
+<body>
+<!-- ενσωματωμένα βίντεο (base64) -->
+<script type="application/octet-stream" id="vIntro">{{VINTRO}}</script>
+<script type="application/octet-stream" id="vIdle">{{VIDLE}}</script>
+
+<header id="hdr">
+  <div class="wrap nav">
+    <a href="#top" class="brand" aria-label="Happy Tail"><img src="{{LOGO}}" alt="Happy Tail Natural Pet Shop"></a>
+    <ul id="menu">
+      <li class="reveal" style="--d:.05s"><a href="#why">Φιλοσοφία</a></li>
+      <li class="reveal" style="--d:.15s"><a href="#products">Προϊόντα</a></li>
+      <li class="reveal" style="--d:.25s"><a href="#care">Βιβλίο φροντίδας</a></li>
+      <li class="reveal" style="--d:.35s"><a href="#store">Κατάστημα</a></li>
+      <li class="reveal" style="--d:.45s"><a href="#visit">Επικοινωνία</a></li>
+    </ul>
+    <a class="btn btn-leaf reveal" style="--d:.55s" href="tel:+306976769228">📞 697 676 9228</a>
+    <button class="menu-btn reveal" aria-label="Μενού" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
+  </div>
+  <div class="nav-line"></div>
+</header>
+
+<main id="top">
+<div class="hero" id="hero">
+  <!-- ===== INTRO =====
+       Βίντεο: βάλτε το αρχείο video/intro.mp4 δίπλα στο index.html (φάκελος "video").
+       Αν δεν υπάρχει, παίζει αυτόματα το σχεδιαστικό σκυλάκι. -->
+  <div class="intro" id="intro">
+    <video id="introVid" muted playsinline preload="auto"></video>
+    <div class="dogsvg" id="introDog"></div>
+    <div class="glowbg"></div>
+    <svg class="leaf" style="left:4%;top:10%;--s:110px;--r:-20deg;--d:.0s" viewBox="0 0 100 60"><path d="M2 50C20 8 70 -4 98 8 80 44 40 62 2 50z"/></svg>
+    <svg class="leaf" style="left:12%;bottom:12%;--s:70px;--r:30deg;--d:.15s;--c:#9bc53d" viewBox="0 0 100 60"><path d="M2 50C20 8 70 -4 98 8 80 44 40 62 2 50z"/></svg>
+    <svg class="leaf" style="right:6%;top:8%;--s:120px;--r:160deg;--d:.1s;--c:#9bc53d" viewBox="0 0 100 60"><path d="M2 50C20 8 70 -4 98 8 80 44 40 62 2 50z"/></svg>
+    <svg class="leaf" style="right:14%;bottom:18%;--s:80px;--r:200deg;--d:.25s" viewBox="0 0 100 60"><path d="M2 50C20 8 70 -4 98 8 80 44 40 62 2 50z"/></svg>
+    <svg class="leaf" style="left:38%;top:4%;--s:54px;--r:80deg;--d:.3s;--c:#b9e0c2" viewBox="0 0 100 60"><path d="M2 50C20 8 70 -4 98 8 80 44 40 62 2 50z"/></svg>
+    <svg class="leaf" style="right:34%;bottom:6%;--s:60px;--r:-110deg;--d:.35s;--c:#9bc53d" viewBox="0 0 100 60"><path d="M2 50C20 8 70 -4 98 8 80 44 40 62 2 50z"/></svg>
+    <div class="welcome">Καλώς ήρθατε στο <b>Happy Tail</b>! 🐾</div>
+    <button class="skip" id="skip" type="button">Παράλειψη ›</button>
+  </div>
+
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">● Natural Pet Shop · Σέρρες</span>
+      <h1>Φυσική διατροφή για <em>χαρούμενες</em> ουρίτσες.</h1>
+      <p>Τροφές, λιχουδιές και αξεσουάρ με καθαρά συστατικά.</p>
+      <div class="cta">
+        <a class="btn btn-leaf" href="tel:+306976769228">Παραγγελία στο 697 676 9228</a>
+        <a class="btn btn-ghost" href="#visit">Βρείτε μας</a>
+      </div>
+      <div class="note"><svg viewBox="0 0 24 24"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>Αποστολή στην πόρτα σας, κατόπιν συνεννόησης</div>
+    </div>
+
+    <!-- ===== ΜΙΚΡΟ ΣΚΥΛΑΚΙ =====
+         Βίντεο: video/idle.mp4 (χαμογελά, αναπνέει, κουνά την ουρά — σε loop)
+                 video/treat.mp4 (τρώει τη λιχουδιά — παίζει με το κουμπί) -->
+    <div class="buddy" id="buddy">
+      <div class="buddy-view">
+        <video id="idleVid" muted loop playsinline preload="auto"></video>
+        <video id="treatVid" muted playsinline preload="auto"></video>
+        <div class="dogsvg" id="buddyDog"></div>
+      </div>
+      <div class="buddy-bar"><span>Πεινάει λίγο…</span><button class="btn btn-leaf" id="treatBtn" type="button">🦴 Δώσε λιχουδιά</button></div>
+    </div>
+  </div>
+</div>
+
+<section id="why">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow dark">Η φιλοσοφία μας</span>
+      <h2>Ό,τι βάζουμε στο ράφι, το δίνουμε και στα δικά μας ζώα.</h2>
+      <p>Διαλέγουμε προσεκτικά κάθε προϊόν, με έμφαση στη φυσική σύνθεση και την ποιότητα των πρώτων υλών.</p>
+    </div>
+    <div class="values">
+      <div class="value">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 1 8-1.3 5.3-5 10-9 10Z"/><path d="M2 21c0-3 1.9-5.4 5.5-6"/></svg></div>
+        <h3>Φυσικά συστατικά</h3>
+        <p>Τροφές και λιχουδιές χωρίς περιττά πρόσθετα και συντηρητικά.</p>
+      </div>
+      <div class="value">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7Z"/></svg></div>
+        <h3>Προσωπική συμβουλή</h3>
+        <p>Σας βοηθάμε να βρείτε την τροφή που ταιριάζει σε ηλικία, μέγεθος και ανάγκες.</p>
+      </div>
+      <div class="value">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2 3 7v10l9 5 9-5V7Z"/><path d="m3 7 9 5 9-5M12 22V12"/></svg></div>
+        <h3>Επιλεγμένα brands</h3>
+        <p>Ευρωπαϊκές εταιρείες με διαφάνεια στη σύνθεση και την προέλευση.</p>
+      </div>
+      <div class="value">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+        <h3>Στην πόρτα σας</h3>
+        <p>Παραγγελία από το τηλέφωνο και αποστολή στο σπίτι, κατόπιν συνεννόησης.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="products" class="cats-bg">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow dark">Τι θα βρείτε</span>
+      <h2>Όλα όσα χρειάζεται ο φίλος σας, σε ένα μέρος.</h2>
+    </div>
+    <div class="cats">
+      <div class="cat">
+        <span class="num">01</span>
+        <h3>Τροφές σκύλου</h3>
+        <p>Ξηρές και υγρές τροφές για κουτάβια, ενήλικες, μικρόσωμες φυλές και ευαίσθητα στομάχια.</p>
+        <div class="tags"><button class="tag" data-k="puppy">Puppy</button><button class="tag" data-k="adult">Adult</button><button class="tag" data-k="mini">Mini</button><button class="tag" data-k="grainfree">Grain free</button></div>
+      </div>
+      <div class="cat">
+        <span class="num">02</span>
+        <h3>Τροφές γάτας</h3>
+        <p>Πλήρεις διατροφές για γατάκια, ενήλικες και στειρωμένες γάτες, ξηρές και κονσέρβες.</p>
+        <div class="tags"><button class="tag" data-k="kitten">Kitten</button><button class="tag" data-k="sterilised">Sterilised</button><button class="tag" data-k="wetcat">Κονσέρβες</button></div>
+      </div>
+      <div class="cat">
+        <span class="num">03</span>
+        <h3>Λιχουδιές &amp; μασητικά</h3>
+        <p>Φυσικά μασητικά, snacks κολλαγόνου και λιχουδιές από κοτόπουλο, σολομό, πάπια και αρνί.</p>
+        <div class="tags"><button class="tag" data-k="collagen">Κολλαγόνο</button><button class="tag" data-k="dental">Dental</button><button class="tag" data-k="natural">100% natural</button></div>
+      </div>
+      <div class="cat">
+        <span class="num">04</span>
+        <h3>Αξεσουάρ</h3>
+        <p>Κρεβατάκια, μπολ, οδηγοί, είδη περιποίησης, παιχνίδια και σπιτάκια εξωτερικού χώρου.</p>
+        <div class="tags"><button class="tag" data-k="beds">Κρεβάτια</button><button class="tag" data-k="leads">Οδηγοί</button><button class="tag" data-k="grooming">Περιποίηση</button></div>
+      </div>
+    </div>
+    <p class="cats-hint">👆 Πατήστε σε ένα πράσινο ταμπελάκι για να δείτε αναλυτικά τα προϊόντα.</p>
+  </div>
+</section>
+
+<section id="care">
+  <div class="wrap">
+    <div class="book-head">
+      <div class="head">
+        <span class="eyebrow dark">Συμβουλές &amp; απορίες</span>
+        <h2>Βιβλίο φροντίδας</h2>
+        <p>Πράγματα που πρέπει να γνωρίζετε για την υγεία, τη διατροφή και την ευεξία του ζώου σας.</p>
+      </div>
+      <div class="book" id="book" aria-hidden="true">
+        <div class="page left"></div>
+        <div class="page right"><div class="art"><img src="{{PAWG}}" alt=""></div></div>
+        <div class="cover"><div class="front"><div><img src="{{PAW}}" alt="">Βιβλίο<br>φροντίδας</div></div><div class="back"></div></div>
+      </div>
+    </div>
+
+    <!-- ΑΡΘΡΑ: για νέο άρθρο, αντιγράψτε ένα <button class="article">…</button> και αλλάξτε τίτλο, κείμενο και το .full -->
+    <div class="articles" id="articles">
+
+      <button class="article" style="--d:.05s" type="button">
+        <div class="thumb" style="background:#e3f1d3"><svg viewBox="0 0 100 100"><path d="M50 8 82 20v26c0 22-14 38-32 46C32 84 18 68 18 46V20Z" fill="#5f8a17"/><path d="M36 50l10 10 20-22" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div><span class="kicker">Υγεία</span><h3>Προστασία από παράσιτα</h3><p>Ψύλλοι, τσιμπούρια, κουνούπια: γιατί η προστασία χρειάζεται όλο τον χρόνο.</p></div>
+        <span class="go">→</span>
+        <div class="full">
+          <p>Στην Ελλάδα ο ήπιος καιρός κρατάει τα παράσιτα ενεργά σχεδόν όλο τον χρόνο. Η πρόληψη είναι πολύ πιο εύκολη, και φθηνότερη, από τη θεραπεία.</p>
+          <h4>Εξωτερικά παράσιτα</h4>
+          <ul><li><b>Ψύλλοι και τσιμπούρια:</b> κολάρα, αμπούλες ή μασώμενα δισκία, σύμφωνα με το βάρος του ζώου.</li><li>Μετά από κάθε βόλτα στη φύση, ελέγξτε αυτιά, μασχάλες και ανάμεσα στα δάχτυλα.</li></ul>
+          <h4>Κουνούπια και σκνίπες</h4>
+          <ul><li>Μεταδίδουν τη <b>διροφιλαρίωση</b> (σκουλήκι της καρδιάς) και τη <b>λεϊσμανίαση</b>.</li><li>Η προστασία είναι πιο σημαντική από την άνοιξη ως το φθινόπωρο. Αποφεύγετε τις βόλτες στο σούρουπο τους ζεστούς μήνες.</li></ul>
+          <h4>Εσωτερικά παράσιτα</h4>
+          <ul><li>Συνήθως αποπαρασίτωση κάθε 3 μήνες για τα ενήλικα ζώα. Τα κουτάβια και τα γατάκια χρειάζονται συχνότερα.</li></ul>
+          <div class="callout">⚠️ <b>Ποτέ</b> μη βάζετε σε γάτα σκεύασμα για σκύλο. Κάποια περιέχουν περμεθρίνη, που είναι τοξική για τις γάτες. Το πρόγραμμα το ορίζει πάντα ο κτηνίατρός σας.</div>
+        </div>
+      </button>
+
+      <button class="article" style="--d:.15s" type="button">
+        <div class="thumb" style="background:#f6e7cf"><svg viewBox="0 0 100 100"><path d="M12 52h76c0 18-16 30-38 30S12 70 12 52z" fill="#c98a4f"/><path d="M20 52c4-8 12-12 20-10 6-8 18-8 24 0 8-2 14 2 16 10" fill="#e0a96d"/><path d="M60 20a14 14 0 1 1-22 4" fill="none" stroke="#5f8a17" stroke-width="6" stroke-linecap="round"/><path d="M34 16l4 9 9-3" fill="none" stroke="#5f8a17" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div><span class="kicker">Διατροφή</span><h3>Πώς αλλάζουμε τροφή χωρίς στομαχόπονο</h3><p>Το πρόγραμμα 7 ημερών για ομαλή μετάβαση σε νέα τροφή.</p></div>
+        <span class="go">→</span>
+        <div class="full">
+          <p>Η απότομη αλλαγή τροφής είναι η πιο συχνή αιτία για μαλακά κόπρανα ή έμετο. Το στομάχι χρειάζεται λίγες μέρες για να συνηθίσει.</p>
+          <h4>Το πρόγραμμα</h4>
+          <ul><li><b>Ημέρες 1–2:</b> 75% παλιά τροφή, 25% νέα</li><li><b>Ημέρες 3–4:</b> 50% – 50%</li><li><b>Ημέρες 5–6:</b> 25% παλιά, 75% νέα</li><li><b>Ημέρα 7:</b> 100% νέα τροφή</li></ul>
+          <h4>Χρήσιμες συμβουλές</h4>
+          <ul><li>Για ευαίσθητα στομάχια, απλώστε τη μετάβαση σε 10–14 ημέρες.</li><li>Οι γάτες είναι πιο επιλεκτικές. Κάντε υπομονή, αλλά μην αφήνετε ποτέ γάτα νηστική για μέρες.</li><li>Μην αλλάζετε ταυτόχρονα τροφή και λιχουδιές, ώστε να ξέρετε τι φταίει αν υπάρξει πρόβλημα.</li></ul>
+          <div class="callout">Αν η διάρροια ή ο έμετος συνεχίζονται πάνω από 1–2 μέρες, επικοινωνήστε με τον κτηνίατρο.</div>
+        </div>
+      </button>
+
+      <button class="article" style="--d:.25s" type="button">
+        <div class="thumb" style="background:#dfeef0"><svg viewBox="0 0 100 100"><rect x="14" y="62" width="72" height="12" rx="6" fill="#2b2d2f"/><path d="M30 62a20 20 0 0 1 40 0" fill="#9bc53d"/><path d="M50 30v-10M40 34l-6-8M60 34l6-8" stroke="#5f8a17" stroke-width="5" stroke-linecap="round"/></svg></div>
+        <div><span class="kicker">Διατροφή</span><h3>Πόση τροφή χρειάζεται τελικά;</h3><p>Η συσκευασία είναι μόνο η αρχή. Πώς βρίσκουμε τη σωστή μερίδα.</p></div>
+        <span class="go">→</span>
+        <div class="full">
+          <p>Ο πίνακας στη συσκευασία είναι <b>σημείο εκκίνησης</b>. Κάθε ζώο έχει διαφορετικές ανάγκες, ανάλογα με την ηλικία, τη δραστηριότητα και τη στείρωση.</p>
+          <h4>Βήμα–βήμα</h4>
+          <ul><li>Ζυγίστε τη μερίδα με ζυγαριά κουζίνας. Η «κούπα» συχνά ξεφεύγει πολύ.</li><li>Χωρίστε την ημερήσια ποσότητα σε 2 γεύματα, ή περισσότερα για κουτάβια και γατάκια.</li><li>Οι λιχουδιές να είναι έως ~10% των ημερήσιων θερμίδων. Αφαιρέστε τες από το φαγητό.</li><li>Τα στειρωμένα ζώα συνήθως χρειάζονται λιγότερες θερμίδες.</li></ul>
+          <h4>Πώς ξέρω ότι είναι σωστό;</h4>
+          <ul><li>Νιώθετε τα πλευρά με ελαφριά πίεση, χωρίς να φαίνονται.</li><li>Από πάνω, φαίνεται «μέση» πίσω από τα πλευρά.</li><li>Ζυγίζετε μία φορά τον μήνα και προσαρμόζετε κατά ±10%.</li></ul>
+          <div class="callout">Περάστε από το κατάστημα και θα σας βοηθήσουμε να υπολογίσουμε τη μερίδα για τη συγκεκριμένη τροφή.</div>
+        </div>
+      </button>
+
+      <button class="article" style="--d:.35s" type="button">
+        <div class="thumb" style="background:#dceaf7"><svg viewBox="0 0 100 100"><path d="M50 14C38 32 28 44 28 58a22 22 0 0 0 44 0c0-14-10-26-22-44z" fill="#4a90c9"/><path d="M40 60a10 10 0 0 0 10 10" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/></svg></div>
+        <div><span class="kicker">Ευεξία</span><h3>Η γάτα μου δεν πίνει νερό</h3><p>Απλοί τρόποι να ενυδατώνεται σωστά, και πότε να ανησυχήσετε.</p></div>
+        <span class="go">→</span>
+        <div class="full">
+          <p>Οι γάτες κατάγονται από ζώα της ερήμου και έχουν αδύναμη αίσθηση της δίψας. Πολλές πίνουν λιγότερο νερό από όσο χρειάζονται, και αυτό επιβαρύνει νεφρά και ουροποιητικό.</p>
+          <h4>Τι βοηθάει</h4>
+          <ul><li><b>Υγρή τροφή</b> (κονσέρβες, φακελάκια) καθημερινά. Περιέχει ~75–80% νερό.</li><li>Πολλά μπολ σε διάφορα σημεία, μακριά από το φαγητό και την άμμο.</li><li>Φαρδιά, ρηχά μπολ, για να μην ακουμπούν τα μουστάκια.</li><li>Σιντριβάνι νερού: πολλές γάτες προτιμούν το νερό που τρέχει.</li><li>Φρέσκο νερό κάθε μέρα και καθαρό μπολ.</li></ul>
+          <div class="callout">Αν η γάτα πίνει ξαφνικά <b>πολύ περισσότερο</b> νερό, ή πηγαίνει συχνά στην άμμο χωρίς αποτέλεσμα, μην περιμένετε: επισκεφθείτε κτηνίατρο.</div>
+        </div>
+      </button>
+
+    </div>
+  </div>
+</section>
+
+<section id="store">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow dark">Το κατάστημα</span>
+      <h2>Ελάτε να μας γνωρίσετε από κοντά.</h2>
+      <p>Ένας φωτεινός χώρος για να δείτε, να ρωτήσετε και να διαλέξετε με την ησυχία σας, με ή χωρίς τον τετράποδο συνοδό σας.</p>
+    </div>
+    <div class="store-grid">
+      <figure><img src="{{STORE}}" alt="Διάδρομοι με τροφές και αξεσουάρ" loading="lazy"><figcaption>Τροφές, λιχουδιές &amp; αξεσουάρ</figcaption></figure>
+      <figure><img src="{{SHELVES}}" alt="Ράφια με φυσικές τροφές σκύλου και γάτας" loading="lazy"><figcaption>Ο τοίχος των φυσικών τροφών</figcaption></figure>
+    </div>
+    <div class="brands">
+      <small>Θα βρείτε μεταξύ άλλων</small>
+      <!-- ΛΟΓΟΤΥΠΑ: βάλτε τα αρχεία στον φάκελο logos/ δίπλα στο index.html με τα ονόματα που φαίνονται στο src (π.χ. logos/harper-and-bone.png). Όσα λείπουν δείχνουν το όνομα. -->
+      <div class="brand-grid">
+        <div class="brand-card"><img src="logos/harper-and-bone.png" alt="Harper and Bone" onload="this.parentNode.classList.add('has-logo')" onerror="this.remove()"><span>Harper and Bone</span></div>
+        <div class="brand-card"><img src="logos/baffs-naturals.png" alt="Baffs Naturals" onload="this.parentNode.classList.add('has-logo')" onerror="this.remove()"><span>Baffs Naturals</span></div>
+        <div class="brand-card"><img src="logos/happy-dog.png" alt="Happy Dog" onload="this.parentNode.classList.add('has-logo')" onerror="this.remove()"><span>Happy Dog</span></div>
+        <div class="brand-card"><img src="logos/happy-cat.png" alt="Happy Cat" onload="this.parentNode.classList.add('has-logo')" onerror="this.remove()"><span>Happy Cat</span></div>
+        <div class="brand-card"><img src="logos/the-dog-epicurean.png" alt="The Dog Epicurean" onload="this.parentNode.classList.add('has-logo')" onerror="this.remove()"><span>The Dog Epicurean</span></div>
+        <div class="brand-card"><img src="logos/flexi.png" alt="Flexi" onload="this.parentNode.classList.add('has-logo')" onerror="this.remove()"><span>Flexi</span></div>
+        <div class="brand-card"><img src="logos/earth-rated.png" alt="Earth Rated" onload="this.parentNode.classList.add('has-logo')" onerror="this.remove()"><span>Earth Rated</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap" id="order">
+  <div class="order">
+    <img class="pawbg" src="{{PAWG}}" alt="">
+    <div>
+      <span class="eyebrow dark">Τηλεφωνικές παραγγελίες</span>
+      <h2>Το αγαπημένο σας σακί, ένα τηλεφώνημα μακριά.</h2>
+      <p>Πείτε μας τι χρειάζεστε. Θα το έχουμε έτοιμο για παραλαβή ή θα το φέρουμε στην πόρτα σας.</p>
+      <a class="btn btn-dark" href="tel:+306976769228">📞 697 676 9228</a>
+    </div>
+    <ul class="order-list">
+      <li class="hl">Αποστολή προϊόντων στην πόρτα σας, κατόπιν συνεννόησης</li>
+      <li>Παραλαβή από το κατάστημα, Εθνικής Αντίστασης 52</li>
+      <li>Συμβουλή για τη σωστή τροφή πριν την αγορά</li>
+    </ul>
+  </div>
+</div>
+
+<section id="visit">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow dark">Επικοινωνία</span>
+      <h2>Βρείτε μας στις Σέρρες.</h2>
+    </div>
+    <div class="visit">
+      <div class="info">
+        <div class="row"><h3>Διεύθυνση</h3><p>Εθνικής Αντίστασης 52, Σέρρες 621 00</p></div>
+        <div class="row"><h3>Τηλέφωνο παραγγελιών</h3><a href="tel:+306976769228">697 676 9228</a><small>Αποστολή στην πόρτα σας, κατόπιν συνεννόησης</small></div>
+        <div class="row"><h3>Email</h3><a href="mailto:happytailserres@gmail.com">happytailserres@gmail.com</a></div>
+        <div class="row"><h3>Ωράριο</h3>
+          <!-- ΩΡΑΡΙΟ: για να το προσθέσετε, βάλτε εδώ τις ώρες -->
+          <p>Δείτε το τρέχον ωράριο στη <a href="https://www.facebook.com/profile.php?id=61584055689224" target="_blank" rel="noopener" style="color:var(--leaf)">σελίδα μας στο Facebook</a> ή καλέστε μας.</p>
+        </div>
+        <div class="social">
+          <a href="https://www.facebook.com/profile.php?id=61584055689224" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3c-2.8 0-4 1.8-4 4.5V11H7v4h3v9h4v-9h3l1-4h-4V8.8c0-.5.3-.8 1-.8Z"/></svg></a>
+          <a href="https://www.instagram.com/happytail_serres/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" style="fill:none;stroke:#fff;stroke-width:2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="#fff"/></svg></a>
+        </div>
+      </div>
+      <div class="map">
+        <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Χάρτης" src="https://maps.google.com/maps?q=%CE%95%CE%B8%CE%BD%CE%B9%CE%BA%CE%AE%CF%82%20%CE%91%CE%BD%CF%84%CE%AF%CF%83%CF%84%CE%B1%CF%83%CE%B7%CF%82%2052%2C%20%CE%A3%CE%AD%CF%81%CF%81%CE%B5%CF%82%2062100&z=16&output=embed"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <img src="{{LOGO}}" alt="Happy Tail">
+    <p>© <span id="y"></span> Happy Tail Natural Pet Shop · Σέρρες</p>
+  </div>
+</footer>
+
+<!-- ======= Σταθερό κουμπί επικοινωνίας ======= -->
+<div class="fab" id="fab">
+  <div class="fab-panel" id="fabPanel" hidden role="dialog" aria-label="Επικοινωνία">
+    <div class="fp-head"><img src="{{PAW}}" alt=""><div><b>Ρωτήστε μας!</b><span>Απαντάμε το συντομότερο δυνατό</span></div><button type="button" id="fabClose" aria-label="Κλείσιμο">×</button></div>
+    <div class="fp-body">
+      <a class="fp-link" href="https://m.me/61584055689224" target="_blank" rel="noopener"><span class="i" style="background:#0a7cff"><svg viewBox="0 0 24 24"><path d="M12 2C6.4 2 2 6.1 2 11.7c0 2.9 1.2 5.5 3.2 7.3V22l3-1.6c1.2.3 2.4.5 3.8.5 5.6 0 10-4.1 10-9.7S17.6 2 12 2zm1 13-2.6-2.7L5.5 15l5.4-5.7 2.6 2.7 4.9-2.7Z"/></svg></span><span>Στείλτε μας μήνυμα στο Facebook<small>Messenger</small></span></a>
+      <a class="fp-link" href="https://ig.me/m/happytail_serres" target="_blank" rel="noopener"><span class="i" style="background:linear-gradient(45deg,#f9a825,#e1306c,#833ab4)"><svg viewBox="0 0 24 24" style="fill:none;stroke:#fff;stroke-width:2.2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg></span><span>Μήνυμα στο Instagram<small>@happytail_serres</small></span></a>
+      <a class="fp-link" href="tel:+306976769228"><span class="i" style="background:var(--leaf-dark)"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1Z"/></svg></span><span>Καλέστε μας<small>697 676 9228</small></span></a>
+      <div class="fp-or">ή γράψτε μας εδώ</div>
+      <form class="fp-form" id="fpForm">
+        <input name="name" placeholder="Το όνομά σας" required>
+        <input name="contact" placeholder="Τηλέφωνο ή email (προαιρετικό)">
+        <textarea name="msg" rows="3" placeholder="Η ερώτησή σας…" required></textarea>
+        <button class="btn btn-leaf" type="submit">Αποστολή</button>
+      </form>
+    </div>
+  </div>
+  <button class="fab-btn" id="fabBtn" type="button" aria-expanded="false" aria-controls="fabPanel"><span class="pw"><img src="{{PAW}}" alt=""></span><span class="lbl">Ρωτήστε μας</span></button>
+</div>
+
+<dialog class="modal" id="modal">
+  <div class="m-head"><div><span class="eyebrow dark" id="mKick"></span><h3 id="mTitle"></h3></div><button class="m-close" type="button" aria-label="Κλείσιμο" onclick="this.closest('dialog').close()">×</button></div>
+  <div class="m-body" id="mBody"></div>
+</dialog>
+
+<script>
+document.getElementById('y').textContent=new Date().getFullYear();
+document.querySelectorAll('#menu a').forEach(a=>a.addEventListener('click',()=>document.getElementById('menu').classList.remove('open')));
+
+/* ================= Modal ================= */
+const modal=document.getElementById('modal');
+function openModal(kick,title,html){
+  document.getElementById('mKick').textContent=kick;
+  document.getElementById('mTitle').textContent=title;
+  document.getElementById('mBody').innerHTML=html;
+  modal.showModal(); modal.scrollTop=0;
+}
+modal.addEventListener('click',e=>{ if(e.target===modal) modal.close(); });
+
+/* ================= Προϊόντα ανά ταμπελάκι =================
+   ΑΛΛΑΞΤΕ ελεύθερα τη λίστα: [μάρκα, όνομα, περιγραφή]            */
+const PRODUCTS={
+  puppy:{cat:'Τροφές σκύλου',title:'Puppy, για κουτάβια',items:[
+    ['Harper and Bone','Puppy','Πλήρης ξηρά τροφή για την ανάπτυξη, με φυσικά συστατικά.'],
+    ['Happy Dog','Puppy','Ήπια σύνθεση για το ευαίσθητο στομάχι του κουταβιού.'],
+    ['Κονσέρβες','Υγρή τροφή για κουτάβια','Για μικτή διατροφή και καλύτερη ενυδάτωση.']]},
+  adult:{cat:'Τροφές σκύλου',title:'Adult, για ενήλικους σκύλους',items:[
+    ['Harper and Bone','Adult Dog','Συνταγές με κοτόπουλο, πάπια, αρνί ή ψάρι.'],
+    ['Happy Dog','Adult','Ποικιλία γεύσεων για κάθε μέγεθος και δραστηριότητα.'],
+    ['Κονσέρβες','Υγρή τροφή ενηλίκων','Ως πλήρες γεύμα ή συμπλήρωμα στην ξηρά τροφή.']]},
+  mini:{cat:'Τροφές σκύλου',title:'Mini, για μικρόσωμες φυλές',items:[
+    ['Harper and Bone','Adult Mini','Μικρότερη κροκέτα, ιδανική για μικρά στόματα.'],
+    ['Happy Dog','Mini','Συνταγές προσαρμοσμένες στις ανάγκες μικρόσωμων σκύλων.']]},
+  grainfree:{cat:'Τροφές σκύλου',title:'Grain free, χωρίς σιτηρά',items:[
+    ['Επιλογές χωρίς σιτηρά','Για ευαίσθητα στομάχια','Τροφές χωρίς σιτάρι και καλαμπόκι, για σκύλους με δυσανεξίες.'],
+    ['Monoprotein','Μία πρωτεΐνη','Λίγα, απλά συστατικά για εύκολη πέψη.']]},
+  kitten:{cat:'Τροφές γάτας',title:'Kitten, για γατάκια',items:[
+    ['Harper and Bone','Kitten','Για υγιή ανάπτυξη τους πρώτους μήνες.'],
+    ['Happy Cat','Kitten','Τρυφερή κροκέτα, εύπεπτη σύνθεση.']]},
+  sterilised:{cat:'Τροφές γάτας',title:'Sterilised, για στειρωμένες γάτες',items:[
+    ['Harper and Bone','Sterilised Cat','Ελεγχόμενες θερμίδες για ιδανικό βάρος.'],
+    ['Happy Cat','Sterilised','Υποστήριξη ουροποιητικού και διατήρηση βάρους.']]},
+  wetcat:{cat:'Τροφές γάτας',title:'Κονσέρβες & φακελάκια',items:[
+    ['Υγρή τροφή','Κονσέρβες γάτας','Ψάρι, κοτόπουλο, μοσχάρι, σε πατέ ή κομματάκια.'],
+    ['Φακελάκια','Μονές μερίδες','Πρακτικά και φρέσκα σε κάθε γεύμα.']]},
+  collagen:{cat:'Λιχουδιές & μασητικά',title:'Κολλαγόνο',items:[
+    ['Baffs Naturals','Μασητικά με κολλαγόνο','Φυσικά μασητικά που κρατούν τον σκύλο απασχολημένο.'],
+    ['Baffs Naturals','Τραχεία & λαιμός','100% φυσικά, χωρίς πρόσθετα, σιτηρά και σόγια.']]},
+  dental:{cat:'Λιχουδιές & μασητικά',title:'Dental',items:[
+    ['Μασητικά','Dental sticks','Βοηθούν στον καθαρισμό των δοντιών με το μάσημα.'],
+    ['Φυσικά μασητικά','Σκληρά μασητικά','Για σκύλους που αγαπούν να μασάνε ώρα.']]},
+  natural:{cat:'Λιχουδιές & μασητικά',title:'100% natural',items:[
+    ['Baffs Naturals','Λιχουδιές ενός συστατικού','Αποξηραμένα κομμάτια κρέατος, χωρίς συντηρητικά.'],
+    ['The Dog Epicurean','Σνακ για σκύλους','Λιχουδιές με προσεγμένες, φυσικές συνταγές.']]},
+  beds:{cat:'Αξεσουάρ',title:'Κρεβάτια',items:[
+    ['Κρεβάτια','Χνουδωτά κρεβατάκια','Μαλακά και ζεστά, σε διάφορα μεγέθη.'],
+    ['Μαξιλάρια','Στρώματα','Για το σπίτι, το αυτοκίνητο ή το κλουβί μεταφοράς.']]},
+  leads:{cat:'Αξεσουάρ',title:'Οδηγοί & λουριά',items:[
+    ['Flexi','Αναδιπλούμενοι οδηγοί','Για ελευθερία στη βόλτα με απόλυτο έλεγχο.'],
+    ['Λουριά & σαμαράκια','Για κάθε μέγεθος','Άνετα και ασφαλή για καθημερινή χρήση.']]},
+  grooming:{cat:'Αξεσουάρ',title:'Περιποίηση',items:[
+    ['Σαμπουάν','Σαμπουάν & καλλυντικά','Ήπια προϊόντα για καθαρό και λαμπερό τρίχωμα.'],
+    ['Earth Rated','Σακουλάκια περιττωμάτων','Ανθεκτικά σακουλάκια για τη βόλτα.'],
+    ['Εκπαίδευση','Πάνες εκπαίδευσης','Για κουτάβια που μαθαίνουν.']]}
+};
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+document.querySelectorAll('.tag').forEach(t=>t.addEventListener('click',()=>{
+  const d=PRODUCTS[t.dataset.k]; if(!d) return;
+  const cards=d.items.map(([b,n,p])=>`<div class="prod"><span class="b">${esc(b)}</span><h4>${esc(n)}</h4><p>${esc(p)}</p></div>`).join('');
+  openModal(d.cat,d.title,`<div class="prod-grid">${cards}</div>
+    <div class="m-foot"><small>Η διαθεσιμότητα αλλάζει συχνά. Ρωτήστε μας για συσκευασίες και τιμές.</small>
+    <a class="btn btn-leaf" href="tel:+306976769228">📞 Παραγγελία</a>
+    <button class="btn btn-ghost" type="button" onclick="modal.close();openFab()">Ρωτήστε μας</button></div>`);
+}));
+
+/* ================= Άρθρα ================= */
+document.querySelectorAll('.article').forEach(a=>a.addEventListener('click',()=>{
+  openModal(a.querySelector('.kicker').textContent,a.querySelector('h3').textContent,a.querySelector('.full').innerHTML);
+}));
+const book=document.getElementById('book'), arts=document.getElementById('articles');
+if('IntersectionObserver' in window){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ book.classList.add('open'); setTimeout(()=>arts.classList.add('shown'),700); io.disconnect(); } }),{threshold:.35});
+  io.observe(book);
+}else{book.classList.add('open');arts.classList.add('shown');}
+
+/* ================= Κουμπί επικοινωνίας ================= */
+const fabPanel=document.getElementById('fabPanel'), fabBtn=document.getElementById('fabBtn');
+function openFab(){fabPanel.hidden=false;fabBtn.setAttribute('aria-expanded','true');}
+function closeFab(){fabPanel.hidden=true;fabBtn.setAttribute('aria-expanded','false');}
+fabBtn.addEventListener('click',()=>fabPanel.hidden?openFab():closeFab());
+document.getElementById('fabClose').addEventListener('click',closeFab);
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeFab(); });
+document.addEventListener('click',e=>{ if(!fabPanel.hidden && !e.target.closest('#fab') && !e.target.closest('dialog')) closeFab(); });
+document.getElementById('fpForm').addEventListener('submit',e=>{
+  e.preventDefault(); const f=e.target;
+  const body=`${f.msg.value}\n\n— ${f.name.value}${f.contact.value?' · '+f.contact.value:''}`;
+  location.href='mailto:happytailserres@gmail.com?subject='+encodeURIComponent('Ερώτηση από το site – '+f.name.value)+'&body='+encodeURIComponent(body);
+});
+
+/* ================= Σκυλάκι =================
+   Αν υπάρχουν τα βίντεο (video/intro.mp4, video/idle.mp4, video/treat.mp4) παίζουν αυτά.
+   Αλλιώς παίζει το σχεδιαστικό σκυλάκι (SVG) με την ίδια σειρά κινήσεων.            */
+(function(){
+  const $=id=>document.getElementById(id);
+  // Βίντεο ενσωματωμένα στη σελίδα (αν λείπουν, ψάχνει τον φάκελο video/)
+  function embedded(id,file){
+    const el=$(id); const b64=el?el.textContent.trim():'';
+    if(b64.length<100) return file;
+    try{const bin=atob(b64),u=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);
+      return URL.createObjectURL(new Blob([u],{type:'video/mp4'}));}catch(e){return file;}
+  }
+  const VSRC={intro:embedded('vIntro','video/intro.mp4'),idle:embedded('vIdle','video/idle.mp4')};
+  const lerp=(a,b,p)=>a+(b-a)*p, clamp=p=>Math.max(0,Math.min(1,p));
+  const ease=p=>p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2, easeIn=p=>p*p, easeOut=p=>1-Math.pow(1-p,3);
+  const seg=(t,a,b)=>clamp((t-a)/(b-a));
+  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function dogSVG(vb){return `<svg viewBox="${vb}" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+    <line x1="-2000" y1="340" x2="3000" y2="340" stroke="#2a3226" stroke-width="2"/>
+    <g data-p="treat"><circle data-p="glow" r="34" fill="#9bc53d" opacity=".18"/><g data-p="bone"><path d="M-20 -6a7 7 0 1 1 6-9h28a7 7 0 1 1 6 9 7 7 0 1 1-6 9h-28a7 7 0 1 1-6-9z" fill="#f3e3c3" stroke="#c9a46b" stroke-width="2"/></g></g>
+    <ellipse data-p="shadow" cx="0" cy="342" rx="95" ry="10" fill="#000" opacity=".35"/>
+    <g data-p="dog">
+      <g data-p="tail"><path d="M-84 -16C-110 -28-120 -58-108 -82" fill="none" stroke="#c98a4f" stroke-width="14" stroke-linecap="round"/></g>
+      <g data-p="FB"><rect x="-9" y="0" width="18" height="46" rx="9" fill="#b0743f"/></g>
+      <g data-p="FF"><rect x="-9" y="0" width="18" height="46" rx="9" fill="#b0743f"/></g>
+      <ellipse cx="0" cy="0" rx="90" ry="47" fill="#e0a96d"/>
+      <ellipse cx="10" cy="20" rx="62" ry="22" fill="#f5d6ae"/>
+      <ellipse cx="-40" cy="-22" rx="30" ry="18" fill="#c98a4f" opacity=".7"/>
+      <g data-p="NB"><rect x="-10" y="0" width="20" height="46" rx="10" fill="#e0a96d"/><ellipse cx="2" cy="44" rx="13" ry="7" fill="#f5d6ae"/></g>
+      <g data-p="NF"><rect x="-10" y="0" width="20" height="46" rx="10" fill="#e0a96d"/><ellipse cx="3" cy="44" rx="13" ry="7" fill="#f5d6ae"/></g>
+      <path d="M58 -46q14 22 6 46" fill="none" stroke="#9bc53d" stroke-width="9" stroke-linecap="round"/>
+      <g data-p="head">
+        <circle cx="98" cy="-48" r="40" fill="#e0a96d"/>
+        <ellipse cx="134" cy="-30" rx="31" ry="21" fill="#f5d6ae"/>
+        <ellipse cx="160" cy="-37" rx="10" ry="7.5" fill="#2a1d14"/>
+        <circle cx="157" cy="-39" r="2.2" fill="#fff" opacity=".7"/>
+        <circle data-p="blush" cx="118" cy="-28" r="8" fill="#ff8a8a" opacity="0"/>
+        <g data-p="eye"><circle cx="110" cy="-62" r="6.5" fill="#2a1d14"/><circle cx="112" cy="-64" r="2" fill="#fff"/></g>
+        <path data-p="wink" d="M102 -61q8 7 16 0" fill="none" stroke="#2a1d14" stroke-width="3.5" stroke-linecap="round" opacity="0"/>
+        <path data-p="mouthN" d="M134 -14q8 3 16 -3" fill="none" stroke="#2a1d14" stroke-width="3" stroke-linecap="round"/>
+        <g data-p="mouthS" opacity="0"><path d="M126 -17q16 16 32 -4" fill="#2a1d14"/><ellipse data-p="tongue" cx="143" cy="-8" rx="7" ry="6" fill="#ff7b8a"/><path d="M126 -17q16 16 32 -4" fill="none" stroke="#2a1d14" stroke-width="3" stroke-linecap="round"/></g>
+        <path d="M80 -84C58 -88 46 -54 58 -20C70 -26 84 -50 94 -76Z" fill="#b0743f"/>
+      </g>
+      <g data-p="crumbs" opacity="0"><circle cx="150" cy="40" r="3" fill="#f3e3c3"/><circle cx="165" cy="48" r="2.5" fill="#f3e3c3"/><circle cx="140" cy="52" r="2" fill="#f3e3c3"/></g>
+    </g>
+    <g data-p="sparkle" opacity="0"><path d="M0 -14L3 -3 14 0 3 3 0 14 -3 3 -14 0 -3 -3Z" fill="#9bc53d"/></g>
+  </svg>`;}
+
+  function makeDog(el,vb){
+    el.innerHTML=dogSVG(vb);
+    const q=n=>el.querySelector(`[data-p="${n}"]`);
+    const D={}; ['dog','head','tail','shadow','treat','bone','glow','blush','eye','wink','mouthN','mouthS','tongue','crumbs','sparkle'].forEach(n=>D[n]=q(n));
+    const legs={FB:[q('FB'),-50],FF:[q('FF'),52],NB:[q('NB'),-36],NF:[q('NF'),66]};
+    const setLeg=(k,a)=>{const[e,x]=legs[k];e.setAttribute('transform',`translate(${x} 24) rotate(${a})`);};
+    return function(P){
+      const p=Object.assign({x:0,y:270,sc:1,br:1,h:0,tl:0,ph:0,amp:0,happy:0,wink:0,treat:0,bx:0,by:328,sp:0,crumbs:0,tongue:1},P);
+      D.dog.setAttribute('transform',`translate(${p.x} ${p.y}) scale(${p.sc} ${p.sc*p.br})`);
+      D.head.setAttribute('transform',`rotate(${p.h} 62 -22)`);
+      D.tail.setAttribute('transform',`rotate(${p.tl} -84 -16)`);
+      const s=Math.sin(p.ph)*p.amp; setLeg('NF',s);setLeg('FB',s);setLeg('FF',-s);setLeg('NB',-s);
+      D.shadow.setAttribute('cx',p.x);
+      D.treat.setAttribute('transform',`translate(${p.bx} ${p.by})`);
+      D.bone.setAttribute('transform',`scale(${p.treat})`); D.glow.setAttribute('opacity',(.18*p.treat).toFixed(2));
+      D.crumbs.setAttribute('opacity',p.crumbs);
+      D.mouthS.setAttribute('opacity',p.happy); D.mouthN.setAttribute('opacity',1-p.happy);
+      D.tongue.setAttribute('ry',(6*p.tongue).toFixed(2));
+      D.blush.setAttribute('opacity',(p.happy*.55).toFixed(2));
+      D.eye.setAttribute('opacity',p.wink?0:1); D.wink.setAttribute('opacity',p.wink?1:0);
+      D.sparkle.setAttribute('opacity',p.sp);
+      D.sparkle.setAttribute('transform',`translate(${p.x+140} ${p.y-100}) scale(${.6+.6*p.sp})`);
+    };
+  }
+
+  /* ---------- ΙΝΤΡΟ ---------- */
+  const hero=$('hero'), intro=$('intro'), vid=$('introVid');
+  let mode=null, finished=false, introRaf;
+  const bloom=()=>intro.classList.add('bloom');
+  function finish(){
+    if(finished) return; finished=true;
+    cancelAnimationFrame(introRaf);
+    hero.classList.add('done'); intro.classList.add('fade');
+    setTimeout(()=>{hero.classList.add('gone');try{vid.pause()}catch(e){}},950);
+  }
+  $('skip').addEventListener('click',finish);
+
+  const introPose=makeDog($('introDog'),'0 0 1000 420');
+  const TB=720; // θέση λιχουδιάς
+  function introAt(t){
+    const P={bx:TB,treat:1};
+    if(t<1.7){ // περπατά γρήγορα, ψάχνει με τη μουσούδα
+      P.x=lerp(-230,588,seg(t,0,1.7)); P.h=44+7*Math.sin(t*16); P.amp=24; P.ph=t*12; P.y=270-Math.abs(Math.sin(t*12))*3; P.tl=10*Math.sin(t*8);
+    }else if(t<2.8){ // σκύβει και τρώει
+      P.x=588; P.h=t<1.9?lerp(44,60,seg(t,1.7,1.9)):58+5*Math.sin(t*32);
+      P.treat=1-clamp(Math.ceil((t-1.9)/.3)/3); P.crumbs=t>1.9?1:0; P.tl=18*Math.sin(t*14);
+    }else{ // σηκώνει το κεφάλι, γλώσσα έξω, κλείνει το μάτι, κουνά την ουρά
+      P.x=588; P.treat=0; P.h=t<3.2?lerp(58,-10,easeOut(seg(t,2.8,3.2))):-8+3*Math.sin(t*3);
+      P.happy=clamp((t-2.9)/.25); P.tl=26*Math.sin(t*22); P.tongue=1+.15*Math.sin(t*11);
+      P.wink=(t>3.5&&t<3.9)?1:0; P.sp=(t>3.5&&t<4.2)?1-seg(t,3.9,4.2):0;
+    }
+    introPose(P);
+    if(t>4.0) bloom();
+    if(t>6.6) finish();
+  }
+  function useSvg(){
+    if(mode) return; mode='svg';
+    let st=null; const f=ts=>{ if(st===null) st=ts; introAt((ts-st)/1000); if(!finished) introRaf=requestAnimationFrame(f); };
+    introRaf=requestAnimationFrame(f);
+  }
+  if(reduce){ hero.classList.add('done','gone'); }
+  else{
+    vid.addEventListener('error',useSvg);
+    vid.addEventListener('loadeddata',()=>{
+      if(mode) return; mode='video'; intro.classList.add('has-video');
+      vid.play().catch(()=>{ intro.classList.remove('has-video'); mode=null; useSvg(); });
+    });
+    vid.addEventListener('timeupdate',()=>{ if(vid.duration && vid.duration-vid.currentTime<1.6) bloom(); });
+    vid.src=VSRC.intro;
+    vid.addEventListener('ended',()=>{ bloom(); setTimeout(finish,1500); });
+    setTimeout(()=>{ if(!mode) useSvg(); },2500);
+    setTimeout(finish,30000); // ασφάλεια
+    addEventListener('scroll',()=>{ if(scrollY>200) finish(); },{passive:true});
+  }
+
+  /* ---------- ΜΙΚΡΟ ΣΚΥΛΑΚΙ ---------- */
+  const bud=$('buddy'), idleV=$('idleVid'), treatV=$('treatVid'), btn=$('treatBtn'), label=bud.querySelector('.buddy-bar span');
+  const budPose=makeDog($('buddyDog'),'60 110 420 315');
+  let idleOK=false, treatOK=false, T0=null, budStart=null;
+  idleV.addEventListener('loadeddata',()=>{ idleOK=true; bud.classList.add('has-video'); idleV.classList.add('on'); idleV.play().catch(()=>{}); });
+  treatV.addEventListener('loadeddata',()=>{ treatOK=true; });
+  idleV.src=VSRC.idle; treatV.src=VSRC.intro; // το «λιχουδιά» παίζει την ίδια σκηνή με το intro
+  treatV.addEventListener('ended',()=>{ treatV.classList.remove('on'); idleV.classList.add('on'); idleV.play().catch(()=>{}); doneTreat(); });
+
+  function doneTreat(){ btn.disabled=false; label.textContent='Μμμ… κι άλλη; 😋'; }
+  btn.addEventListener('click',()=>{
+    btn.disabled=true; label.textContent='Νιαμ νιαμ…';
+    if(idleOK && treatOK){ idleV.classList.remove('on'); treatV.classList.add('on'); treatV.currentTime=0; treatV.play().catch(doneTreat); }
+    else { T0=performance.now()/1000; }
+  });
+
+  function budAt(t){
+    const P={x:230,bx:385,by:328,treat:0,happy:1,tl:26*Math.sin(t*15),h:-6+3*Math.sin(t*2.2),br:1+.018*Math.sin(t*5.5),tongue:1+.18*Math.sin(t*11),wink:(t%3.6)>3.46?1:0};
+    if(T0!==null){
+      const s=performance.now()/1000-T0;
+      if(s<.45){P.treat=1;P.by=lerp(120,328,easeIn(s/.45));}
+      else if(s<1.5){P.treat=s<.65?1:1-clamp(Math.ceil((s-.65)/.28)/3);P.happy=0;P.crumbs=s>.65?1:0;
+        P.h=s<.65?lerp(-6,58,ease(seg(s,.45,.65))):58+5*Math.sin(s*32);}
+      else if(s<1.85){P.h=lerp(58,-8,easeOut(seg(s,1.5,1.85)));}
+      else if(s<2.6){P.wink=(s>2&&s<2.35)?1:0;P.sp=(s>2&&s<2.6)?1-seg(s,2.35,2.6):0;}
+      else{T0=null;doneTreat();}
+    }
+    budPose(P);
+  }
+  if(reduce) budAt(0);
+  else{ const f=ts=>{ if(budStart===null) budStart=ts; if(!idleOK) budAt((ts-budStart)/1000); requestAnimationFrame(f); }; requestAnimationFrame(f); }
+})();
+</script>
+</body>
+</html>
