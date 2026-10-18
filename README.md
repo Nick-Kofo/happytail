@@ -10,6 +10,7 @@ Repo: https://github.com/Nick-Kofo/happytail
 | `index.html` | **Το έτοιμο site.** Αυτό ανεβαίνει στο GitHub. Όλες οι εικόνες και τα βίντεο είναι μέσα του, δεν χρειάζεται τίποτε άλλο. |
 | `source/template.html` | Ο κώδικας της σελίδας (χωρίς τις εικόνες). Εδώ γίνονται οι αλλαγές σε κείμενα, άρθρα, προϊόντα. |
 | `source/build.py` | Φτιάχνει το `index.html` από το `template.html` + τα assets. |
+| `logos/` | Λογότυπα μαρκών (PNG). Το όνομα αρχείου πρέπει να ταιριάζει με το `src` στο `template.html`. |
 | `source/assets/` | Λογότυπο, πατούσες, φωτογραφίες καταστήματος. |
 | `source/video/` | Βίντεο golden retriever (intro, idle) και φωτογραφίες-καρέ για κινητά. |
 | `source/backups/` | Παλαιότερες εκδόσεις της σελίδας. |
@@ -23,11 +24,11 @@ Repo: https://github.com/Nick-Kofo/happytail
    python3 build.py
    ```
 3. Ανοίγεις το `index.html` στον browser για έλεγχο.
-4. Ανεβάζεις το `index.html` στο GitHub (Add file → Upload files → Commit). Σε 1–2 λεπτά είναι online.
+4. Κάνεις commit και push (μαζί με τον φάκελο `logos/` αν άλλαξε). Σε 1–2 λεπτά είναι online.
 
 ## Εκκρεμότητες
 
-- Λογότυπα μαρκών (Harper and Bone, Baffs Naturals, Happy Dog, Happy Cat, The Dog Epicurean, Flexi, Earth Rated)
+- Λογότυπα για Harper and Bone, Happy Dog, Happy Cat, The Dog Epicurean, Flexi, Earth Rated (τώρα δείχνουν μόνο το όνομα)
 - Ωράριο καταστήματος
 - Έλεγχος προϊόντων & άρθρων από τη Μαγδαληνή
 - Domain: προτεινόμενο `happytailpetshop.gr` (ήταν ελεύθερο στις 30/9/2026)
