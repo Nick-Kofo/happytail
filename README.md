@@ -1,6 +1,6 @@
 # Happy Tail – Natural Pet Shop Σέρρες
 
-Website: https://nick-kofo.github.io/happytail/
+Website: https://happytailnatural.gr (παλιά διεύθυνση: https://nick-kofo.github.io/happytail/)
 Repo: https://github.com/Nick-Kofo/happytail
 
 ## Τι υπάρχει εδώ
@@ -31,5 +31,4 @@ Repo: https://github.com/Nick-Kofo/happytail
 - Λογότυπα για Harper and Bone, Happy Dog, Happy Cat, The Dog Epicurean, Flexi, Earth Rated (τώρα δείχνουν μόνο το όνομα)
 - Ωράριο καταστήματος
 - Έλεγχος προϊόντων & άρθρων από τη Μαγδαληνή
-- Domain: προτεινόμενο `happytailpetshop.gr` (ήταν ελεύθερο στις 30/9/2026)
 - Βίντεο σε μεγαλύτερη ανάλυση / με κλείσιμο ματιού (προαιρετικά)
