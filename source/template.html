@@ -119,7 +119,8 @@ section{padding:96px 0}
 .tag{font-size:13px;background:var(--mint);padding:6px 12px;border-radius:999px;font-weight:600;border:1px solid transparent;cursor:pointer;transition:background .15s,transform .15s,border-color .15s;display:inline-flex;align-items:center;gap:4px}
 .tag::after{content:"›";font-weight:800;opacity:.55}
 .tag:hover,.tag:focus-visible{background:var(--leaf);transform:translateY(-1px);outline:none}
-.cats-hint{margin-top:22px;color:var(--muted);font-size:14px;display:flex;align-items:center;gap:8px}
+.cats-cta{margin-top:22px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.cats-hint{color:var(--muted);font-size:14px;display:flex;align-items:center;gap:8px}
 
 /* ---------- care book ---------- */
 .book-head{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;margin-bottom:48px}
@@ -290,11 +291,12 @@ dialog.modal::backdrop{background:rgba(20,20,20,.55);backdrop-filter:blur(3px)}
     <ul id="menu">
       <li class="reveal" style="--d:.05s"><a href="#why">Φιλοσοφία</a></li>
       <li class="reveal" style="--d:.15s"><a href="#products">Προϊόντα</a></li>
-      <li class="reveal" style="--d:.25s"><a href="#care">Βιβλίο φροντίδας</a></li>
-      <li class="reveal" style="--d:.35s"><a href="#store">Κατάστημα</a></li>
-      <li class="reveal" style="--d:.45s"><a href="#visit">Επικοινωνία</a></li>
+      <li class="reveal" style="--d:.25s"><a href="catalog.html">Κατάλογος</a></li>
+      <li class="reveal" style="--d:.35s"><a href="#care">Βιβλίο φροντίδας</a></li>
+      <li class="reveal" style="--d:.45s"><a href="#store">Κατάστημα</a></li>
+      <li class="reveal" style="--d:.55s"><a href="#visit">Επικοινωνία</a></li>
     </ul>
-    <a class="btn btn-leaf reveal" style="--d:.55s" href="tel:+306976769228">📞 697 676 9228</a>
+    <a class="btn btn-leaf reveal" style="--d:.65s" href="tel:+306976769228">📞 697 676 9228</a>
     <button class="menu-btn reveal" aria-label="Μενού" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
   </div>
   <div class="nav-line"></div>
@@ -327,7 +329,7 @@ dialog.modal::backdrop{background:rgba(20,20,20,.55);backdrop-filter:blur(3px)}
       <p>Τροφές, λιχουδιές και αξεσουάρ με καθαρά συστατικά.</p>
       <div class="cta">
         <a class="btn btn-leaf" href="tel:+306976769228">Παραγγελία στο 697 676 9228</a>
-        <a class="btn btn-ghost" href="#visit">Βρείτε μας</a>
+        <a class="btn btn-ghost" href="catalog.html">Δείτε τον κατάλογο</a>
       </div>
       <div class="note"><svg viewBox="0 0 24 24"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>Αποστολή στην πόρτα σας, κατόπιν συνεννόησης</div>
     </div>
@@ -411,7 +413,10 @@ dialog.modal::backdrop{background:rgba(20,20,20,.55);backdrop-filter:blur(3px)}
         <div class="tags"><button class="tag" data-k="beds">Κρεβάτια</button><button class="tag" data-k="leads">Οδηγοί</button><button class="tag" data-k="grooming">Περιποίηση</button></div>
       </div>
     </div>
-    <p class="cats-hint">👆 Πατήστε σε ένα πράσινο ταμπελάκι για να δείτε αναλυτικά τα προϊόντα.</p>
+    <div class="cats-cta">
+      <p class="cats-hint">👆 Πατήστε σε ένα πράσινο ταμπελάκι για να δείτε αναλυτικά τα προϊόντα.</p>
+      <a class="btn btn-dark" href="catalog.html">Όλος ο κατάλογος →</a>
+    </div>
   </div>
 </section>
 

@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Κατάλογος – Happy Tail Σέρρες</title>
+<link rel="icon" type="image/png" href="source/assets/paw.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#141414; --ink-2:#2b2d2f; --muted:#5d6166;
+  --paper:#fbfaf6; --cream:#f3efe3; --mint:#d4ecd9; --mint-2:#b9e0c2;
+  --leaf:#9bc53d; --leaf-dark:#5f8a17; --line:#e4e0d4;
+  --radius:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Commissioner",system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+button,input,select{font:inherit;color:inherit}
+.wrap{width:min(1240px,100% - 32px);margin-inline:auto}
+
+header{position:sticky;top:0;z-index:50;background:var(--ink);color:#fff;border-bottom:3px solid var(--leaf)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
+.brand img{height:44px;width:auto}
+.nav-r{display:flex;gap:10px;align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 20px;border-radius:999px;font-weight:700;text-decoration:none;font-size:15px;transition:transform .15s,background .15s;border:0;cursor:pointer;white-space:nowrap}
+.btn:hover{transform:translateY(-1px)}
+.btn-leaf{background:var(--leaf);color:var(--ink)}
+.btn-leaf:hover{background:#aad34c}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-line{background:#fff;border:1.5px solid var(--line)}
+.btn-ghost{background:none;color:#fff;border:1.5px solid #ffffff40}
+.list-btn{position:relative}
+.list-btn .count{position:absolute;top:-6px;right:-6px;background:var(--leaf);color:var(--ink);font-size:12px;font-weight:800;min-width:22px;height:22px;border-radius:11px;display:grid;place-items:center;padding:0 5px}
+.list-btn .count:empty{display:none}
+
+.demo{background:#fff6d6;color:#6b5400;font-size:14px;text-align:center;padding:8px 16px;border-bottom:1px solid #f0e2a8}
+
+.top{background:var(--ink);color:#fff;padding:40px 0 34px}
+.eyebrow{color:var(--leaf);font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase}
+.top h1{font-size:clamp(30px,4.4vw,48px);line-height:1.1;font-weight:800;letter-spacing:-.02em;margin:10px 0 8px}
+.top p{color:#cfd2cc;max-width:620px}
+.search{margin-top:22px;display:flex;align-items:center;gap:10px;background:#fff;color:var(--ink);border-radius:999px;padding:6px 6px 6px 20px;max-width:560px}
+.search input{flex:1;border:0;outline:0;background:none;font-size:16px;min-width:0;padding:8px 0}
+.search svg{width:20px;height:20px;stroke:var(--muted);fill:none;stroke-width:2;flex:none}
+
+.pets{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap}
+.pets[hidden]{display:none}
+.pet{border:1.5px solid #ffffff38;background:none;color:#fff;border-radius:999px;padding:8px 18px;font-weight:600;cursor:pointer}
+.pet[aria-pressed=true]{background:var(--leaf);border-color:var(--leaf);color:var(--ink)}
+
+.layout{display:grid;grid-template-columns:250px 1fr;gap:32px;padding:32px 0 80px;align-items:start}
+aside{position:sticky;top:92px;display:grid;gap:26px}
+aside h3{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.cat-list{display:grid;gap:2px}
+.cat-list button{display:flex;justify-content:space-between;align-items:center;text-align:left;background:none;border:0;padding:9px 12px;border-radius:10px;cursor:pointer;font-weight:500}
+.cat-list button:hover{background:var(--cream)}
+.cat-list button[aria-pressed=true]{background:var(--mint);font-weight:700}
+.cat-list small{color:var(--muted);font-size:13px}
+.brand-filter{display:flex;flex-wrap:wrap;gap:6px;max-height:340px;overflow:auto;padding:2px}
+.bf{background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:6px 12px;cursor:pointer;font-size:14px;font-weight:600}
+.bf small{color:var(--muted);font-weight:500;margin-left:2px}
+.more{grid-column:1/-1;justify-self:center;margin-top:8px}
+.code{color:var(--muted);font-size:13px}
+.body h4{font-size:14px;letter-spacing:.01em}
+.bf img{max-height:34px;object-fit:contain}
+.bf[aria-pressed=true]{border-color:var(--leaf-dark);box-shadow:0 0 0 2px var(--mint-2)}
+.clear{background:none;border:0;color:var(--leaf-dark);font-weight:700;cursor:pointer;text-decoration:underline;justify-self:start;padding:0}
+
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px;flex-wrap:wrap}
+.bar .n{color:var(--muted)}
+.bar .n b{color:var(--ink)}
+.bar select{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:8px 14px}
+.filters-btn{display:none}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:18px}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s;cursor:pointer}
+.card:hover{transform:translateY(-3px);box-shadow:0 14px 30px -18px #0004}
+.shot{position:relative;aspect-ratio:5/4;background:var(--cream);display:grid;place-items:center}
+.shot svg{width:78%;height:78%}
+.badges{position:absolute;top:10px;left:10px;right:50px;display:flex;gap:6px;flex-wrap:wrap}
+.badge{background:var(--ink);color:#fff;font-size:11px;font-weight:700;padding:4px 9px;border-radius:999px;letter-spacing:.02em}
+.badge.g{background:var(--leaf);color:var(--ink)}
+.badge.v{background:#2d5d9f}
+.pet-ic{position:absolute;top:10px;right:10px;background:#fff;border-radius:50%;width:32px;height:32px;display:grid;place-items:center;font-size:17px;box-shadow:0 2px 6px #0001}
+.body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.body .bl{height:22px;display:flex;align-items:center}
+.bt{font-weight:800;letter-spacing:.06em;text-transform:uppercase;font-size:13px;color:var(--leaf-dark)}
+.bf .bt{font-size:14px;color:var(--ink)}
+.modal .bt{font-size:16px}
+.body .bl img{max-height:22px;max-width:110px;object-fit:contain}
+.body h4{font-size:16px;line-height:1.3}
+.body p{font-size:14px;color:var(--muted);flex:1}
+.sizes{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+.sizes span{font-size:12px;font-weight:600;border:1px solid var(--line);border-radius:6px;padding:2px 8px;background:var(--paper)}
+.card .add{margin-top:10px;width:100%;padding:10px}
+.card .add.on{background:var(--mint);color:var(--leaf-dark)}
+.empty{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--muted)}
+
+/* modal + drawer */
+.scrim{position:fixed;inset:0;background:#000a;z-index:80;display:none}
+.scrim.on{display:block}
+.modal{position:fixed;z-index:90;left:50%;top:50%;transform:translate(-50%,-50%);width:min(860px,100% - 32px);max-height:calc(100svh - 48px);overflow:auto;background:#fff;border-radius:22px;display:none;grid-template-columns:1fr 1fr}
+.modal.on{display:grid}
+.modal .shot{aspect-ratio:auto;min-height:340px}
+.modal .info{padding:30px 28px;display:flex;flex-direction:column;gap:12px}
+.modal h2{font-size:26px;line-height:1.2}
+.modal .bl img{max-height:30px;max-width:150px;object-fit:contain}
+.modal ul{padding-left:18px;color:var(--ink-2);font-size:15px}
+.modal .sizes span{font-size:14px;padding:6px 12px;cursor:pointer}
+.modal .sizes span.sel{border-color:var(--leaf-dark);background:var(--mint);font-weight:700}
+.modal .acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto;padding-top:8px}
+.x{position:absolute;top:12px;right:12px;width:38px;height:38px;border-radius:50%;border:0;background:#fff;box-shadow:0 2px 8px #0002;cursor:pointer;font-size:20px;z-index:2}
+.drawer{position:fixed;z-index:90;top:0;right:0;bottom:0;width:min(400px,100%);background:#fff;transform:translateX(100%);transition:transform .3s ease;display:flex;flex-direction:column}
+.drawer.on{transform:none}
+.drawer header{position:static;border:0;padding:20px 22px;display:flex;justify-content:space-between;align-items:center}
+.drawer header h3{font-size:20px}
+.drawer .items{flex:1;overflow:auto;padding:8px 22px}
+.li{display:grid;grid-template-columns:56px 1fr auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.li .mini{width:56px;height:56px;background:var(--cream);border-radius:10px;display:grid;place-items:center}
+.li .mini svg{width:80%;height:80%}
+.li b{display:block;font-size:14px;line-height:1.3}
+.li small{color:var(--muted)}
+.qty{display:flex;align-items:center;gap:6px}
+.qty button{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--line);background:#fff;cursor:pointer;font-weight:700}
+.drawer .foot{padding:18px 22px;border-top:1px solid var(--line);display:grid;gap:10px}
+.drawer .foot p{font-size:13px;color:var(--muted)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(120px);background:var(--ink);color:#fff;padding:12px 20px;border-radius:999px;font-weight:600;z-index:100;transition:transform .3s;max-width:calc(100% - 32px);text-align:center;font-size:14px}
+.toast.on{transform:translateX(-50%)}
+
+@media (max-width:900px){
+  .layout{grid-template-columns:1fr;padding-top:20px}
+  aside{position:fixed;z-index:90;inset:auto 0 0 0;top:auto;max-height:80svh;overflow:auto;background:#fff;border-radius:22px 22px 0 0;padding:24px 20px 28px;transform:translateY(100%);transition:transform .3s}
+  aside.on{transform:none}
+  .filters-btn{display:inline-flex}
+  .grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .body{padding:12px}
+  .body p{display:none}
+  .badge{font-size:10px;padding:3px 7px}
+  .badge+.badge{display:none}
+  .modal{grid-template-columns:1fr;top:auto;bottom:0;transform:translateX(-50%);border-radius:22px 22px 0 0;width:100%}
+  .modal .shot{min-height:240px}
+  .nav .hide-m{display:none}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="index.html" class="brand" aria-label="Happy Tail"><img src="source/assets/logo-t.png" alt="Happy Tail Natural Pet Shop"></a>
+    <div class="nav-r">
+      <a class="btn btn-ghost hide-m" href="index.html">← Αρχική</a>
+      <button class="btn btn-leaf list-btn" id="openList">🛒 Η λίστα μου<span class="count" id="count"></span></button>
+    </div>
+  </div>
+</header>
+<div class="demo">Οι εικόνες είναι ενδεικτικές. Οι φωτογραφίες των προϊόντων έρχονται σύντομα.</div>
+
+<section class="top">
+  <div class="wrap">
+    <span class="eyebrow">Κατάλογος προϊόντων</span>
+    <h1>Βρείτε ό,τι χρειάζεται ο φίλος σας.</h1>
+    <p>Φτιάξτε τη λίστα σας και στείλτε τη μας. Θα σας πούμε τιμή και διαθεσιμότητα και θα την ετοιμάσουμε για παραλαβή ή αποστολή.</p>
+    <label class="search">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+      <input id="q" type="search" placeholder="Αναζήτηση: π.χ. αρνί, γιαούρτι, τουαλέτα…">
+    </label>
+    <div class="pets" id="pets"></div>
+  </div>
+</section>
+
+<div class="wrap layout">
+  <aside id="aside">
+    <div>
+      <h3>Κατηγορία</h3>
+      <div class="cat-list" id="cats"></div>
+    </div>
+    <div>
+      <h3>Μάρκα</h3>
+      <div class="brand-filter" id="brands"></div>
+    </div>
+    <button class="clear" id="clear">Καθαρισμός φίλτρων</button>
+    <button class="btn btn-dark filters-btn" id="closeFilters">Εμφάνιση προϊόντων</button>
+  </aside>
+
+  <main>
+    <div class="bar">
+      <span class="n" id="n"></span>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-line filters-btn" id="openFilters">Φίλτρα</button>
+        <select id="sort" aria-label="Ταξινόμηση">
+          <option value="feat">Προτεινόμενα</option>
+          <option value="az">Όνομα Α–Ω</option>
+          <option value="brand">Μάρκα</option>
+        </select>
+      </div>
+    </div>
+    <div class="grid" id="grid"></div>
+  </main>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<div class="modal" id="modal" role="dialog" aria-modal="true"></div>
+<div class="drawer" id="drawer" role="dialog" aria-modal="true">
+  <header><h3>Η λίστα μου</h3><button class="x" style="position:static" id="closeList">×</button></header>
+  <div class="items" id="items"></div>
+  <div class="foot">
+    <p>Πατήστε «Αποστολή στο Messenger»: ανοίγει η συνομιλία μας με τη λίστα έτοιμη. Αν δεν εμφανιστεί, έχει ήδη αντιγραφεί, κάντε απλώς επικόλληση.</p>
+    <button class="btn btn-leaf" id="copy">📋 Αντιγραφή λίστας</button>
+    <a class="btn btn-dark" id="msgr" href="https://m.me/61584055689224" target="_blank" rel="noopener">💬 Αποστολή στο Messenger</a>
+    <a class="btn btn-line" href="tel:+306976769228">📞 697 676 9228</a>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script src="catalog-data.js"></script>
+<script>
+/* Τα προϊόντα έρχονται από το catalog-data.js (φτιάχνεται με: cd source && python3 catalog_from_csv.py "αρχείο.csv") */
+const LOGOS=new Set(['advance','all-for-paws','baffs-naturals','bio-petactive','celebrate-freshness','fiboo','fisi','glee-for-pets','happy-yak','pawise','perfect-care','piper','reflex-plus','savic','yowup']);
+const PAL=[['#2f5d3a','#e7d7a3'],['#1d3550','#c9a35a'],['#7a2e2e','#f0d9b5'],['#3b3f6b','#d8c7a0'],['#2c4a4a','#e7d7a3'],['#4a3a22','#c9a35a'],['#14315a','#e2632b'],['#5f8a17','#f3efe3'],['#6b3416','#e0a456'],['#1f8a70','#ffffff']];
+const hash=s=>[...s].reduce((a,c)=>(a*31+c.charCodeAt(0))|0,7);
+const BRANDS={'':['','#5d6166','#e4e0d4']};
+for(const [k,v] of Object.entries(BRAND_NAMES)){const c=PAL[Math.abs(hash(k))%PAL.length];BRANDS[k]=[v,c[0],c[1]]}
+PRODUCTS.forEach(p=>{p.sizes=p.v.map(x=>x.s);p.codes=p.v.map(x=>x.code).filter(Boolean)});
+
+/* ===== Εικόνες-δείγμα (SVG συσκευασίες με το logo) ===== */
+function shot(p){
+  const [bn,b1,b2]=BRANDS[p.b], [c1,c2]=p.col||[b1,b2];
+  const L=(x,y,w,h)=>!bn?'':`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="8" fill="#fff"/><text x="${x+w/2}" y="${y+h/2+2}" text-anchor="middle" dominant-baseline="middle" font-family="Commissioner,sans-serif" font-weight="800" font-size="${Math.min(h*.42,w/Math.max(bn.length,3)*1.6)}" fill="${c1}">${bn}</text>`;
+  const S={
+    bag:`<path d="M52 30h96l10 150H42Z" fill="${c1}"/><path d="M52 30h96l-4 14H56Z" fill="#0002"/><rect x="42" y="150" width="116" height="30" fill="${c2}" opacity=".9"/>${L(60,62,80,52)}`,
+    can:`<ellipse cx="100" cy="176" rx="52" ry="12" fill="#0002"/><rect x="48" y="50" width="104" height="124" rx="6" fill="${c1}"/><ellipse cx="100" cy="50" rx="52" ry="12" fill="#c9c9c9"/><rect x="48" y="140" width="104" height="14" fill="${c2}"/>${L(60,74,80,52)}`,
+    pouch:`<path d="M58 34h84l6 10-4 136H54L50 44Z" fill="${c1}"/><rect x="58" y="34" width="84" height="8" fill="#0002"/><rect x="54" y="150" width="92" height="22" fill="${c2}"/>${L(64,70,72,50)}`,
+    cup:`<path d="M54 70h92l-10 104H64Z" fill="${c1}" stroke="#ddd"/><rect x="50" y="60" width="100" height="12" rx="4" fill="${c2}"/>${L(66,96,68,46)}`,
+    chew:`<rect x="40" y="88" width="120" height="44" rx="22" fill="#f1e2c0" transform="rotate(-18 100 110)"/><rect x="50" y="98" width="100" height="10" rx="5" fill="#e3cf9f" transform="rotate(-18 100 110)"/>${L(62,30,76,42)}`,
+    tray:`<path d="M30 120h140l-10 52H40Z" fill="${c1}"/><path d="M38 120c0-46 28-72 62-72s62 26 62 72Z" fill="${c1}" opacity=".85"/><path d="M78 120v-28a22 22 0 0 1 44 0v28Z" fill="#0004"/>${L(66,138,68,30)}`,
+    crate:`<rect x="30" y="60" width="140" height="110" rx="6" fill="none" stroke="${c1}" stroke-width="5"/>${[0,1,2,3,4,5,6].map(i=>`<line x1="${48+i*18}" y1="60" x2="${48+i*18}" y2="170" stroke="${c1}" stroke-width="3"/>`).join('')}<rect x="30" y="160" width="140" height="12" fill="${c1}"/>${L(66,24,68,30)}`,
+    bowl:`<ellipse cx="100" cy="150" rx="70" ry="16" fill="#0001"/><path d="M34 104h132l-14 46H48Z" fill="#cfd4d8"/><ellipse cx="100" cy="104" rx="66" ry="14" fill="#e8ecef"/><ellipse cx="100" cy="104" rx="50" ry="9" fill="#b8bfc5"/>${L(66,40,68,34)}`,
+    ball:`<circle cx="100" cy="118" r="46" fill="${c1}"/><path d="M60 96c30 14 50 14 80 0" stroke="#fff6" stroke-width="6" fill="none"/><path d="M146 118c16 8 22 24 18 40" stroke="#c9a35a" stroke-width="7" fill="none" stroke-linecap="round"/>${L(66,26,68,34)}`,
+    toy:`<line x1="50" y1="170" x2="130" y2="66" stroke="#8a6a3b" stroke-width="5" stroke-linecap="round"/><path d="M130 66c20 4 30 24 22 40" stroke="#555" stroke-width="2" fill="none"/><path d="M150 104c8 6 20 6 24 18-12 2-22-2-28-10Z" fill="${c2==='#f3efe3'?'#e5315f':c2}"/><path d="M150 104c-2 12 4 22 14 28" stroke="#2fa6e3" stroke-width="5" fill="none"/>${L(30,30,80,36)}`,
+    bottle:`<rect x="78" y="30" width="44" height="22" rx="4" fill="#333"/><rect x="62" y="52" width="76" height="126" rx="16" fill="${c1}"/>${L(70,84,60,48)}`,
+    leash:`<circle cx="58" cy="64" r="18" fill="none" stroke="#9aa0a6" stroke-width="6"/><path d="M70 78c40 10 70 30 50 60s-60 20-50 46" fill="none" stroke="${c1}" stroke-width="12" stroke-linecap="round"/><rect x="58" y="170" width="28" height="14" rx="4" fill="#9aa0a6"/>${L(100,26,80,36)}`,
+    box:`<path d="M40 70l60-26 60 26v90l-60 22-60-22Z" fill="${c1}"/><path d="M40 70l60 22 60-22" fill="none" stroke="#0002" stroke-width="2"/><path d="M100 92v90" stroke="#0002" stroke-width="2"/>${L(48,100,46,40)}`
+  };
+  return `<svg viewBox="0 0 200 200" aria-hidden="true">${S[p.shape]}</svg>`;
+}
+
+/* ===== Κατάσταση & render ===== */
+const $=s=>document.querySelector(s);
+const st={pet:'all',cat:'all',brands:new Set(),q:'',sort:'feat',limit:48};
+let list={}; try{list=JSON.parse(localStorage.getItem('ht-list-v2')||'{}')}catch(e){}
+const save=()=>{try{localStorage.setItem('ht-list-v2',JSON.stringify(list))}catch(e){}};
+PRODUCTS.forEach((p,i)=>p.id=i);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const norm=s=>s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+const bl=b=>!b?'':LOGOS.has(b)?`<img src="logos/${b}.png" alt="${esc(BRANDS[b][0])}">`:`<span class="bt">${esc(BRANDS[b][0])}</span>`;
+const PETNAME={dog:'Για σκύλους',cat:'Για γάτες',both:'Για σκύλους & γάτες'};
+const PETS={all:'Όλα',dog:'🐶 Σκύλος',cat:'🐱 Γάτα'};
+const petOk=p=>st.pet==='all'||p.pet===st.pet||p.pet==='both';
+
+function filtered(except){
+  return PRODUCTS.filter(p=>petOk(p)
+    &&(except==='cat'||st.cat==='all'||p.c===st.cat)
+    &&(except==='brand'||!st.brands.size||st.brands.has(p.b))
+    &&(!st.q||norm([p.n,BRANDS[p.b][0],CATS[p.c],...p.sizes,...p.codes].join(' ')).includes(norm(st.q))));
+}
+function render(){
+  $('#pets').hidden=new Set(PRODUCTS.map(p=>p.pet)).size<2;
+  $('#pets').innerHTML=Object.entries(PETS).map(([k,v])=>`<button class="pet" data-pet="${k}" aria-pressed="${st.pet===k}">${v}</button>`).join('');
+  const pc=filtered('cat');
+  $('#cats').innerHTML=[['all','Όλα τα προϊόντα'],...Object.entries(CATS)].map(([k,v])=>{
+    const n=k==='all'?pc.length:pc.filter(p=>p.c===k).length;
+    return `<button data-cat="${k}" aria-pressed="${st.cat===k}"><span>${v}</span><small>${n}</small></button>`}).join('');
+  const pb=filtered('brand');
+  const used=[...new Set(PRODUCTS.map(p=>p.b))].filter(Boolean).sort((a,b)=>BRANDS[a][0].localeCompare(BRANDS[b][0]));
+  $('#brands').innerHTML=used.map(b=>`<button class="bf" data-b="${b}" aria-pressed="${st.brands.has(b)}">${esc(BRANDS[b][0])} <small>${pb.filter(p=>p.b===b).length}</small></button>`).join('');
+  let items=filtered();
+  if(st.sort==='az') items=[...items].sort((a,b)=>a.n.localeCompare(b.n,'el'));
+  if(st.sort==='brand') items=[...items].sort((a,b)=>BRANDS[a.b][0].localeCompare(BRANDS[b.b][0]));
+  $('#n').innerHTML=`<b>${items.length}</b> προϊόντα`;
+  $('#grid').innerHTML=items.length?items.slice(0,st.limit).map(card).join('')+(items.length>st.limit?`<button class="btn btn-line more" id="more">Περισσότερα (${items.length-st.limit})</button>`:''):`<div class="empty">Δεν βρέθηκαν προϊόντα.<br>Δοκιμάστε άλλη αναζήτηση ή <a href="tel:+306976769228">ρωτήστε μας</a>, μπορεί να το φέρουμε.</div>`;
+  const c=Object.values(list).reduce((a,x)=>a+x.q,0); $('#count').textContent=c||'';
+}
+function card(p){
+  const t=(p.tags||[]).slice(0,2).map(x=>`<span class="badge ${/Κτηνιατρ/.test(x)?'v':/φυσικ|σιτηρ|Προβιο/i.test(x)?'g':''}">${esc(x)}</span>`).join('');
+  const inList=Object.values(list).some(x=>x.id===p.id);
+  return `<article class="card" data-id="${p.id}">
+    <div class="shot">${shot(p)}<div class="badges">${t}</div><span class="pet-ic">${p.pet==='dog'?'🐶':p.pet==='cat'?'🐱':'🐾'}</span></div>
+    <div class="body">
+      <div class="bl">${bl(p.b)}</div>
+      <h4>${esc(p.n)}</h4><p>${esc(CATS[p.c])}</p>
+      <div class="sizes">${p.sizes.map(s=>`<span>${esc(s)}</span>`).join('')}</div>
+      <button class="btn btn-leaf add ${inList?'on':''}" data-add="${p.id}">${inList?'✓ Στη λίστα':'+ Στη λίστα'}</button>
+    </div></article>`;
+}
+
+/* ===== Modal προϊόντος ===== */
+let cur=null,size=null;
+function openP(id){
+  cur=PRODUCTS[id]; size=cur.sizes[0];
+  $('#modal').innerHTML=`<button class="x" data-close>×</button>
+    <div class="shot">${shot(cur)}</div>
+    <div class="info">
+      <div class="bl">${bl(cur.b)}</div>
+      <h2>${esc(cur.n)}</h2>
+      <p>${esc(CATS[cur.c])} · ${PETNAME[cur.pet]}</p>
+      <div><b style="font-size:14px">Συσκευασία / μέγεθος</b><div class="sizes" id="msizes">${cur.sizes.map(s=>`<span data-s="${esc(s)}" class="${s===size?'sel':''}">${esc(s)}</span>`).join('')}</div></div>
+      <small class="code" id="mcode">${codeOf(cur,size)}</small>
+      <div class="acts">
+        <button class="btn btn-leaf" data-madd>+ Προσθήκη στη λίστα</button>
+        <a class="btn btn-line" href="tel:+306976769228">📞 Ρωτήστε τιμή</a>
+      </div>
+    </div>`;
+  $('#modal').classList.add('on'); $('#scrim').classList.add('on');
+}
+function codeOf(p,s){const v=p.v.find(x=>x.s===s);return v&&v.code?'Κωδικός: '+esc(v.code):''}
+function closeAll(){['#modal','#drawer','#scrim','#aside'].forEach(s=>$(s).classList.remove('on'))}
+
+/* ===== Λίστα ===== */
+function add(p,s){
+  const k=p.id+'|'+s; list[k]=list[k]||{id:p.id,s,q:0}; list[k].q++; save(); render(); toast(`Προστέθηκε: ${p.n} (${s})`);
+}
+function renderList(){
+  const e=Object.entries(list);
+  $('#items').innerHTML=e.length?e.map(([k,x])=>{const p=PRODUCTS[x.id];return `<div class="li"><div class="mini">${shot(p)}</div><div><b>${esc(p.n)}</b><small>${esc([BRANDS[p.b][0],x.s].filter(Boolean).join(' · '))}</small></div><div class="qty"><button data-q="${k}" data-d="-1">−</button><span>${x.q}</span><button data-q="${k}" data-d="1">+</button></div></div>`}).join('')
+    :'<p style="padding:40px 0;text-align:center;color:var(--muted)">Η λίστα σας είναι άδεια.</p>';
+}
+function listText(){
+  return 'Γεια σας! Θα ήθελα:\n'+Object.values(list).map(x=>{const p=PRODUCTS[x.id];const v=p.v.find(y=>y.s===x.s);return `• ${x.q} × ${[BRANDS[p.b][0],p.n].filter(Boolean).join(' ')} (${x.s}${v&&v.code&&!x.s.includes('κωδ.')?', κωδ. '+v.code:''})`}).join('\n')+'\n\nΕυχαριστώ!';
+}
+let tt; function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),1800)}
+
+/* ===== Events ===== */
+document.addEventListener('click',e=>{
+  const t=e.target.closest('button,#msizes span,article,#scrim'); if(!t) return;
+  if(t.dataset.pet||t.dataset.cat||t.dataset.b||t.id==='clear'){st.limit=48}
+  if(t.id==='more'){st.limit+=48;render()}
+  else if(t.dataset.pet){st.pet=t.dataset.pet;render()}
+  else if(t.dataset.cat){st.cat=t.dataset.cat;render()}
+  else if(t.dataset.b){st.brands.has(t.dataset.b)?st.brands.delete(t.dataset.b):st.brands.add(t.dataset.b);render()}
+  else if(t.dataset.add){e.stopPropagation();const p=PRODUCTS[t.dataset.add];add(p,p.sizes[0])}
+  else if(t.matches('article')) openP(t.dataset.id);
+  else if(t.dataset.s){size=t.dataset.s;document.querySelectorAll('#msizes span').forEach(x=>x.classList.toggle('sel',x.dataset.s===size));$('#mcode').innerHTML=codeOf(cur,size)}
+  else if(t.hasAttribute('data-madd')){add(cur,size);closeAll()}
+  else if(t.dataset.q){const x=list[t.dataset.q];x.q+=+t.dataset.d;if(x.q<1)delete list[t.dataset.q];save();render();renderList()}
+  else if(t.id==='clear'){st.cat='all';st.brands.clear();st.pet='all';st.q='';$('#q').value='';render()}
+  else if(t.id==='openList'){renderList();$('#drawer').classList.add('on');$('#scrim').classList.add('on')}
+  else if(t.id==='openFilters'){$('#aside').classList.add('on');$('#scrim').classList.add('on')}
+  else if(t.id==='copy'){if(!Object.keys(list).length)return toast('Η λίστα είναι άδεια');navigator.clipboard.writeText(listText()).then(()=>toast('Η λίστα αντιγράφηκε. Επικολλήστε τη στο μήνυμα.'),()=>toast('Δεν έγινε αντιγραφή'))}
+  else if(t.hasAttribute('data-close')||t.id==='closeList'||t.id==='closeFilters'||t.id==='scrim') closeAll();
+});
+$('#msgr').addEventListener('click',e=>{
+  const a=e.currentTarget;
+  if(!Object.keys(list).length){e.preventDefault();return toast('Η λίστα είναι άδεια')}
+  const txt=listText();
+  a.href='https://m.me/61584055689224?text='+encodeURIComponent(txt);
+  try{navigator.clipboard.writeText(txt).catch(()=>{})}catch(err){}
+  toast('Ανοίγει το Messenger με την παραγγελία σας');
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAll()});
+$('#q').addEventListener('input',e=>{st.q=e.target.value.trim();st.limit=48;render()});
+$('#sort').addEventListener('change',e=>{st.sort=e.target.value;render()});
+render();
+</script>
+</body>
+</html>
